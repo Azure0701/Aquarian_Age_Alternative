@@ -1,24 +1,13 @@
-.default-container
-  %header
-    .logo-and-search.clearfix
-      .logo-and-search__logo
-        = image_tag '//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?1324730246'
-      .search
-        %form.logo-and-search__search
-          %input{value:"", placeholder:"キーワードから探す" }
-          %i.fa.fa-search
-    .lists.clearfix
-      .lists__left
-        %ul
-          %li.categories
-            %h2
-              %a{href: ""} カテゴリー
-          %li.brands
-            %h2
-              %a{href: ""} ブランド
-      .signin-and-signup
-        %ul.account
-          %li.signin-btn
-            %a.signin-btn__text{href: ""}ログイン
-          %li.signup-btn
-            %a.signup-btn__text{href: ""}新規会員登録
+.body-wrap
+  .base
+    .header
+      = link_to image_tag("head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+    .header-menu
+      = link_to "掲示板", "/", class: "header-menu__list-board"
+      = link_to "ゲーム紹介", "/", class: "header-menu__list-introduction"
+      = link_to "新規登録", "/", class: "header-menu__list-signup"
+      = link_to "ログイン", "/", class: "header-menu__list-signin"
+    .nav
+    .main
+    .footer
+      © 2019 Shota Tazawa

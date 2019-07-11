@@ -1,0 +1,8 @@
+@mixin header-list {
+  text-align: center;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  color: #FFF;
+  background-image: linear-gradient(#6795fd 0%, #67ceff 100%);
+  transition: .4s;
+}

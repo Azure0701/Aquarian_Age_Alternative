@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  root 'top/index'
+  get '/' => 'top#home'
+
+  resources :top, only: [:index]
+    
 end
