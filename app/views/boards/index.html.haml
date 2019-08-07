@@ -2,8 +2,8 @@
   .body-wrap
     .base
       .header
-        = link_to image_tag("head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
-      = render 'header_menu'
+        = link_to image_tag("head_img2.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render 'top/header_menu'
       .nav
         - if user_signed_in?
           %h3.user-label
@@ -11,6 +11,8 @@
           %h3.user-name
             #edit-show
               = current_user.username
+          .new-board
+            = link_to "スレッド新規作成", new_board_path, class: "new-board__link"
             #edit-modal.edit-modal-wrapper
               .modal
                 .close-modal
@@ -43,6 +45,14 @@
         - else
           %h3.user-label
             ログインされていません
+        .board-list
+          - @boards.each do |board|
+            .board-list__title
+              = link_to "#{board.title}", board_path(board.id), class: "board-list__title-link"
+              - if user_signed_in? && current_user.id == board.user_id
+                = link_to "編集", edit_board_path(board.id)
+                = link_to "削除", board_path(board.id), method: :delete, data:{confirm:'スレッドを削除しますか？'}
       .main
       .footer
         © 2019 Shota Tazawa
+

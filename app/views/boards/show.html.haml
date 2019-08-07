@@ -1,0 +1,64 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("head_img2.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render 'top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名
+          %h3.user-name
+            #edit-show
+              = current_user.username
+          .new-board
+            = link_to "スレッド新規作成", new_board_path, class: "new-board__link"
+          #edit-modal.edit-modal-wrapper
+            .modal
+              .close-modal
+                %i.fa.fa-2x.fa-times
+              #edit-form
+                %h2 ユーザー編集
+                = form_for(current_user) do |f|
+                  %input{name: "_method", type: "hidden", value: "put"}/
+                  %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                  .field
+                    %label{for: "user_username"} Username
+                    %br/
+                    %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                  .field
+                    %label{for: "user_email"} Eメール
+                    %br/
+                    %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                  .field
+                    %label{for: "user_password"} パスワード
+                    %i (6 characters minimum)
+                    %br/
+                    %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                    %br/
+                  .field
+                    %label{for: "user_password_confirmation"} パスワード（確認用）
+                    %br/
+                    %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                  .actions
+                    %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        .board-list
+          - @boards.each do |board|
+            .board-list__title
+              = link_to "#{board.title}", board_path(board.id), class: "board-list__title-link"
+              - if user_signed_in? && current_user.id == board.user_id
+                = link_to "編集", edit_board_path(board.id)
+                = link_to "削除", board_path(board.id), method: :delete, data:{confirm:'スレッドを削除しますか？'}
+      .main
+        .main__board-title
+          = @board.title
+        .main__board-created-time
+          = @board.created_at.strftime("%Y/%m/%d %H:%M")
+        .main__board-content
+          = @board.content 
+      .footer
+        © 2019 Shota Tazawa
+

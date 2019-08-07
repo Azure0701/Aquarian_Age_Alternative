@@ -1,5 +1,10 @@
 @import "config/reset";
 @import "font-awesome";
 @import "mixins/mixin.scss";
-@import "home.scss";
-@import "index.scss";
+@import "flash.scss";
+@import "top/home.scss";
+@import "top/index.scss";
+@import "boards/index.scss";
+@import "boards/new.scss";
+@import "boards/show.scss";
+@import "header_menu.scss";
