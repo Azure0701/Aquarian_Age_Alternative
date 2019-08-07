@@ -1,0 +1,71 @@
+.header-menu
+  - if user_signed_in?
+    = link_to "掲示板", boards_path, class: "header-menu__list-board"
+    = link_to "ゲーム紹介", "/", class: "header-menu__list-introduction"
+    = link_to "マイページ", "/", class: "header-menu__list-signup"
+    = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-menu__list-signin"
+  - else
+    = link_to "掲示板", boards_path, class: "header-menu__list-board"
+    = link_to "ゲーム紹介", "/", class: "header-menu__list-introduction"
+    .header-menu__list-signup{id: "signup-show"}
+      新規登録
+    .header-menu__list-signin{id: "signin-show"}
+      ログイン
+
+#signup-modal.signup-modal-wrapper
+  .modal
+    .close-modal
+      %i.fa.fa-2x.fa-times
+    #signup-form
+      %h2 新規登録
+      %form#new_user.new_user{"accept-charset" => "UTF-8", action: "/users", method: "post"}
+        %input{name: "utf8", type: "hidden", value: "✓"}/
+        %input{name: "authenticity_token", type: "hidden", value: "w/cOxhgLSRgaf2m448DVTUN8jzQh4BsZL95FCqDUKTmMgdn+2UDNlAo8YXBtQA5QrFcdLGSzQu1tM/mg/W7Y5Q=="}/
+        .field
+          %label{for: "user_username"} Username
+          %br/
+          %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text"}/
+          %br/
+        .field
+          %label{for: "user_email"} Email
+          %br/
+          %input#user_email{autofocus: "autofocus", name: "user[email]", type: "email", value: ""}/
+          %br/
+        .field
+          %label{for: "user_password"} Password
+          %em
+            (6 characters minimum)
+          %br/
+          %input#user_password{autocomplete: "off", name: "user[password]", type: "password"}/
+          %br/
+        .field
+          %label{for: "user_password_confirmation"} Password confirmation
+          %br/
+          %input#user_password_confirmation{autocomplete: "off", name: "user[password_confirmation]", type: "password"}/
+          %br/
+        .actions
+          %input{"data-disable-with" => "Sign up",class:"action-input", name: "commit", type: "submit", value: "Sign up"}/
+
+#login-modal.login-modal-wrapper
+  .modal
+    .close-modal
+      %i.fa.fa-2x.fa-times
+    #login-form
+      %h2 ログイン
+      %form#new_user.new_user{"accept-charset" => "UTF-8", action: "/users/sign_in", method: "post"}
+        %input{name: "utf8", type: "hidden", value: "✓"}/
+        %input{name: "authenticity_token", type: "hidden", value: "Lhgr/sBgfabg1kiqhCx2V7zvq1ICTUfYkEpbSRWx2wjUSXl1EWRFmGiIF3NFsC2HB+6tFlKOlhfyxUOs84sqMw=="}/
+        .field
+          %label{for: "user_email"} Email
+          %br/
+          %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: ""}/
+        .field
+          %label{for: "user_password"} Password
+          %br/
+          %input#user_password{autocomplete: "current-password", name: "user[password]", type: "password"}/
+        .field.user_remember_me
+          %input{name: "user[remember_me]", type: "hidden", value: "0"}/
+          %input#user_remember_me{name: "user[remember_me]", type: "checkbox", value: "1"}/
+          %label{for: "user_remember_me"} Remember me
+        .actions
+          %input{"data-disable-with" => "Log in",class:"action-input", name: "commit", type: "submit", value: "Log in"}/
