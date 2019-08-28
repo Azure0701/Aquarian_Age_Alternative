@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'introductions/index'
   get 'comments/create'
   get 'comments/destroy'
   devise_for :users, :controllers => {
