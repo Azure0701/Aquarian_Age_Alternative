@@ -1,0 +1,105 @@
+#mainR {
+  padding: 10px 20px 0px 10px;
+  text-align: left;
+  font-size: 12px;
+  line-height: 140%;
+
+  #mainRAaaWhats {
+    width: 100%;
+    border: solid 5px #fff;
+    color: #FFF;
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  .menuS {
+    border-bottom: 1px dashed #CCCC99;
+    font-size: 0.8em;
+    padding: 2px;
+
+    li {
+      background: url("pan.gif") no-repeat scroll left center;
+      color: #045B84;
+      margin: 0px auto;
+      padding: 0px 3px 0px 10px;
+    }
+  }
+
+  h4 {
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFF37F;
+    background: url("main_titlec.gif") no-repeat left center;
+    padding: 5px 20px;
+  }
+
+  p {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+
+    a {
+      color: #FFFFFF;
+      font-weight: bold;
+      text-decoration: none;
+      outline: none;
+    }
+
+    em {
+      font-style: normal;
+      font-weight: bold;
+    }
+
+    .pictL {
+      border: 2px solid #E1DF80;
+      margin: 0px 10px 5px 0px;
+      float: left;
+    }
+
+    .pictR {
+      border: 2px solid #E1DF80;
+      margin: 0px 0px 5px 10px;
+      float: right;
+    }
+
+    .clear {
+      clear: both;
+    }
+  }
+
+  .linker {
+    text-align: right;
+    padding: 4px;
+
+    a {
+      color: #FFFFFF;
+      font-weight: bold;
+      text-decoration: none;
+      outline: none;
+    }
+  }
+
+  #mainRAaaTokucho {
+    width: 100%;
+    border: solid 5px #fff;
+    color: #FFF;
+    font-size: 18px;
+    padding: 5px;
+  }
+  
+  h3 {
+    font-size: 12px;
+    font-weight: bold;
+    color: #d2f5ff;
+    padding: 3px 15px;
+    margin: 15px 0px 5px;
+    background-color: #015e8a;
+  }
+
+  .pict {
+    border: 2px solid #E1DF80;
+    margin: 0 auto;
+    display: block;
+  }
+}

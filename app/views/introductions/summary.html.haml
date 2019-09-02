@@ -1,0 +1,148 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render '/top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名:
+          %h3.user-name
+            #edit-show
+              = current_user.username
+            #edit-modal.edit-modal-wrapper
+              .modal
+                .close-modal
+                  %i.fa.fa-2x.fa-times
+                #edit-form
+                  %h2 ユーザー編集
+                  = form_for(current_user) do |f|
+                    %input{name: "_method", type: "hidden", value: "put"}/
+                    %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                    .field
+                      %label{for: "user_username"} Username
+                      %br/
+                      %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                    .field
+                      %label{for: "user_email"} Eメール
+                      %br/
+                      %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                    .field
+                      %label{for: "user_password"} パスワード
+                      %i (6 characters minimum)
+                      %br/
+                      %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                      %br/
+                    .field
+                      %label{for: "user_password_confirmation"} パスワード（確認用）
+                      %br/
+                      %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                    .actions
+                      %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        
+        %ul
+          %li
+            = link_to "ゲーム概要", summary_introductions_path
+          %li
+            = link_to "ストーリー", story_introductions_path
+          %li
+            = link_to "遊び方", root_path
+          %li
+            = link_to "プレイモード" ,root_path
+          %li
+            = link_to "プレイ上のポイント" ,root_path
+          %li
+            = link_to "カードリスト" ,root_path
+          %li
+            = link_to "ギャラリー" ,root_path
+
+      .main
+        #mainR
+          %h2#mainRAaaWhats アクエリアンエイジ　オルタナティブとは？
+          %ul.menuS
+            %li ゲーム概要
+          %h4 TCGの雄、アクエリアンエイジ
+          %p
+            %a{href: "http://www.aquarian-age.org/", target: "_blank"}> アクエリアンエイジ
+            は、1999年に発売された
+            %em TCG（トレーディングカードゲーム）
+            です。純国産TCGとしては最も歴史があり、アクティブなプレイヤー数は10万人を数え、カード発行枚数も2005年1月に1億枚を突破するなど高い人気を誇っています。
+          %h4 TCGの興奮をアーケードに。アクエリアンエイジ・オルタナティブ登場！
+          %p
+            = image_tag "aaa_whats_cabi.jpg", width: "250", height: "188", alt: "アクエリアンエイジ　オルタナティブ", class: "pictL"
+            %em> アクエリアンエイジ オルタナティブ
+            は、アクエリアンエイジの世界での闘いを、全く新しいゲームシステムで表現したアーケードゲームです。
+          %p
+            カードアクションによる、攻防の熱い駆け引きをお楽しみ下さい。
+          %br
+          %br
+          %br
+          %br
+          %br
+          %br
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+
+          %h2#mainRAaaTokucho アクエリアンエイジ オルタナティブの特徴
+          %h3 フィールドを駆け巡る、攻防一体のリアルタイムバトル
+          %p
+            = image_tag "aaa_asobi_gamen.jpg", width: "200", height: "150", alt: "ゲーム画面", class: "pictL"
+            キャラクターカードを置いて
+            %em> ブレイク！
+          %p
+            カードを裏返して発動する
+            %em> スキル
+            （特殊効果）のぶつかり合いは、カードゲームの興奮そのものです。
+            %br.clear
+          %h3
+            %em カードゲームの興奮が体感できる、新感覚筐体
+          %p
+            = image_tag "aaa_whats_cabi_zoom.jpg", width: "200", height: "150", alt: "サテライト拡大図", class: "pictL"
+            正面にと手元の2画面表示を採用しました。
+          %p
+            カードを置いて操作する、手元のプレイスクリーンにも映像が投影され、
+            %em> 直感的なゲームプレイ
+            を約束します。
+            %br.clear
+          %h3 多彩で魅力的なカード
+          %p
+            = image_tag "aaa_asobi_card.jpg", width: "200", height: "150", alt: "カード", class: "pictR"
+            有名イラストレーターによって描かれた、
+            %em> かわいくて個性的なキャラクターたち。
+          %p
+            そのキャラクターが持つ多種多様なスキルがゲームの興奮を盛り上げます。
+            %br.clear
+          %h3 NESYS　～全国のプレイヤーとリアルタイム対戦
+          %p{style: "font-weight: bold; color: #000;"}
+            ※ネットワークサービスは、2011年2月28日（月曜日） 午前6時00分を持ちまして終了いたしました。
+          %br
+          %br
+          %p
+            %em> NESYS（タイトーネットエントリーシステム）
+            が全国の「アクエリアンエイジ　オルタナティブ」を接続。ゲームの
+            %em> リアルタイムオンライン対戦
+            を実現しました。
+          %p さらにNESYSカードにデータを保存することで、プレイ成績の保存や、ランキングの参加、新要素の追加など、より幅広い遊びを提供します。
+          = image_tag "aaa_whats_nesys.jpg", width: "460", height: "280", alt: "NESYS", class: "pict"
+          %br
+          %h4 専用NESYSカードに情報を記録
+          %p{style: "font-weight: bold; color: #000;"}
+            ※ネットワークサービスは2011年2月28日（月曜日） 午前6時00分を持ちまして終了いたしました。NESYSカードを使ってプレイしてもデータは記録されません。
+            %br
+            %br
+          %p
+            = image_tag "aaa_whats_card.jpg", width: "200", height: "150", alt: "NESYSカード", class: "pictR"
+            パック内のNESYSカードはプレイヤーの情報を記憶するための「アクエリアンエイジ　オルタナティブ」専用のNESYS対応カードです。
+          %p
+            カードは使用可能回数が設定されています。
+            %br>
+            使用可能回数の切れたカードは、別の未使用カードにデータを引継ぐことが出来ます。
+            %br.clear
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+      .footer
+        © 2019 Shota Tazawa

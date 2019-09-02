@@ -1,7 +1,7 @@
 .header-menu
   - if user_signed_in?
     = link_to "掲示板", boards_path, class: "header-menu__list-board"
-    = link_to "ゲーム紹介", "/", class: "header-menu__list-introduction"
+    = link_to "ゲーム紹介", summary_introductions_path, class: "header-menu__list-introduction"
     = link_to "マイページ", "/", class: "header-menu__list-signup"
     = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-menu__list-signin"
   - else

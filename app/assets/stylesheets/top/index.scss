@@ -23,7 +23,7 @@
     grid-template-rows: 240px 40px auto 100px;
     grid-template-columns: 230px 530px;
     background-image: url("base_back.gif");
-    height: 2000px;
+    height: 100%;
     width: 760px;
     margin: 0px auto;
     .header {
@@ -61,12 +61,12 @@
                          "footer";
     grid-template-rows: 240px
                         40px
-                        200px
-                        200px
+                        auto
+                        auto
                         100px;
     grid-template-columns: 100%;
     background-image: url("base_back.gif");
-    height: 2000px;
+    height: 100%;
     margin: 0px auto;
     grid-row-gap: 0;
     .header {
