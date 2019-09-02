@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'introductions/index'
-  get 'comments/create'
-  get 'comments/destroy'
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'
@@ -17,4 +14,12 @@ Rails.application.routes.draw do
   resources :boards do
    resources :comments, only: [:create, :destroy]
   end
+
+  resources :introductions do
+    collection do
+      get :summary
+      get :story
+    end
+  end
+
 end

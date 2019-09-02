@@ -1,4 +1,7 @@
 class IntroductionsController < ApplicationController
-  def index
+  def summary
+  end
+
+  def story
   end
 end
