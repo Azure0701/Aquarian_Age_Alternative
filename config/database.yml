@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: Aquarian_Age_Alternative_production
-  username: Aquarian_Age_Alternative
-  password: <%= ENV['AQUARIAN_AGE_ALTERNATIVE_DATABASE_PASSWORD'] %>
+  database: heroku_3cf5c430fb2c3b9
+  username: b45e627900cd4c
+  password: <%= ENV['DATABASE_PASSWORD'] %>
