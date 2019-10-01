@@ -1,0 +1,305 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render '/top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名:
+          %h3.user-name
+            #edit-show
+              = current_user.username
+            #edit-modal.edit-modal-wrapper
+              .modal
+                .close-modal
+                  %i.fa.fa-2x.fa-times
+                #edit-form
+                  %h2 ユーザー編集
+                  = form_for(current_user) do |f|
+                    %input{name: "_method", type: "hidden", value: "put"}/
+                    %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                    .field
+                      %label{for: "user_username"} Username
+                      %br/
+                      %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                    .field
+                      %label{for: "user_email"} Eメール
+                      %br/
+                      %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                    .field
+                      %label{for: "user_password"} パスワード
+                      %i (6 characters minimum)
+                      %br/
+                      %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                      %br/
+                    .field
+                      %label{for: "user_password_confirmation"} パスワード（確認用）
+                      %br/
+                      %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                    .actions
+                      %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        
+        %ul
+          %li
+            = link_to "ゲーム概要", summary_introductions_path
+          %li
+            = link_to "ストーリー", story_introductions_path
+          %li
+            = link_to "遊び方", play_introductions_path
+          %li
+            = link_to "プレイモード" ,root_path
+          %li
+            = link_to "プレイ上のポイント" ,root_path
+          %li
+            = link_to "カードリスト" ,root_path
+          %li
+            = link_to "ギャラリー" ,root_path
+
+      .main
+        #mainR
+          %a#top{name: "top"}
+          %h2#mainRAaaAvater アバター編集
+          %ul.menuS
+            %li
+              = link_to "ゲーム概要", summary_introductions_path
+            %li
+              = link_to "遊び方", play_introductions_path
+            %li
+              アバター編集
+          #hlink
+            %p{style: "font-weight: bold; color: #000;"}
+              ※ネットワークサービスは2011年2月28日（月曜日） 午前6時00分を持ちまして終了いたしました。マイルームを使ったアバター編集はおこなえません。
+              %br
+              %br
+            %ul
+              %li
+                %a{href: "#mobileitem"}> モバイルアイテム配布終了のお知らせ
+                （2009年2月27日追加）
+              %li
+                %a{href: "#newitem"}> アバターアイテム追加のお知らせ
+                （2007年8月9日更新）
+              %li
+                %a{href: "#about"}> アバター編集とは？
+                （2007年8月9日更新）
+              %li
+                %a{href: "#edit"}> マイルームでのアバター編集手順
+                （2007年8月9日追加）
+              %li
+                %a{href: "#mainunit"} メインユニットでのアバター編集手順
+          %h3
+            %a#mobileitem{name: "mobileitem"}>
+            モバイルアイテム配布終了のお知らせ
+          %p
+            モバイルサイト「アクエリアンエイジ　オルタナティブ」のサービスを終了に伴い、モバイルアイテムの配布を終了しました。
+            %br
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#newitem{name: "newitem"}>
+            アバターアイテム追加のお知らせ
+          %p 8月1日より、夏にピッタリの新アバターアイテムが仲間入りしました！
+          %h4 男
+          %table.info{cellspacing: "1", summary: "男用追加アバター"}
+            %tbody
+              %tr
+                %th.sizeM{scope: "row"} ボーイトップ
+                %td 子供らしさを強調した夏用服。
+              %tr
+                %th{scope: "row"} ボーイパンツ
+                %td スラリと伸びた足が非常にセクシー。
+              %tr
+                %th{scope: "row"} シックサンダル
+                %td 浴衣によく似合うサンダル。
+              %tr
+                %th{scope: "row"} サマーハット
+                %td 暑い日差しをさえぎる帽子。
+              %tr
+                %th{scope: "row"} メンズサマー
+                %td
+                  夏の定番といえばコレ。
+                  %br
+                  このアイテムはセット装飾品です。
+                  %br
+                  装備時に、他の装飾品も変更されます。
+          %h4 女
+          %table.info{cellspacing: "1", summary: "女用追加アバター"}
+            %tbody
+              %tr
+                %th.sizeM{scope: "row"} シックロップ
+                %td 浴衣がよく似合う履物。
+              %tr
+                %th{scope: "row"} フェスティバル
+                %td うなじに見とれてしまいそうな髪型。
+              %tr
+                %th{scope: "row"} レディースサマー
+                %td
+                  夏の定番といえばやっぱりコレ。
+                  %br
+                  このアイテムはセット装飾品です。
+                  %br
+                  装備時に、他の装飾品も変更されます。
+          %p
+            いずれもカスタムポイントで購入できます。
+            %br
+            価格とどんなアイテムかは、メインユニットでご確認下さい！
+            %br
+              %a{href: "../room/index.html"}> マイルーム
+              の[アバター編集]でも確認や購入、装着を行う事ができます。
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#about{name: "about"}>
+            アバター編集とは
+          %p{style: "font-weight: bold; color: #000;"}
+            ※マイルームは2011年2月28日（月曜日）午前6時00分を持ちまして公開を終了しました。マイルームを使ったアバター編集はおこなえません。
+            %br
+            %br
+          %p
+            = image_tag "introduction/aaa_avatar00.jpg", alt: "アバター編集とは", height: "97", width: "200", class: "pictL"
+            プレイヤーの分身であるマインドブレイカーは、
+            %em> カスタムポイント
+            (ゲームを遊ぶと手に入ります)で各種アイテムを購入する事で、
+            カスタマイズする事ができます。
+            %br
+            アクエリアンエイジ　オルタナティブではこれを
+            %em> アバター編集
+            と呼びます。
+            %br.clear
+          %p
+            = image_tag "introduction/ava06.jpg", alt: "アバター編集", height: "180", width: "200", class: "pictL"
+            アバター編集は
+            %a{href: "#edit"}> マイルーム
+            もしくは
+            %a{href: "#mainunit"}> メインユニット
+            で行えます。
+            %br.clear
+          %p  
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#edit{name: "edit"}>
+            マイルームでのアバター編集手順
+          %p{style: "font-weight: bold; color: #000;"}
+            ※マイルームは2011年2月28日（月曜日）午前6時00分を持ちまして公開を終了しました。マイルームを使ったアバター編集はおこなえません。
+            %br
+            %br
+          .flortR
+            %ol
+              %li
+                %a{href: "../room/index.html"}> マイルーム
+                にログインします。
+              %li
+                メニューで
+                %em> アバター編集
+                を選択します。
+              %li
+                %a{href: "#fitting"}> アイテムの試着
+                で、色々なアイテムを試せます。
+              %li
+                気に入ったアイテムを
+                %a{href: "#myroom_buy"}> 購入・装着
+                します。
+          %p
+            = image_tag "introduction/ava01.jpg", alt: "アバター編集", height: "200", width: "200", class: "pictL"
+          %hr
+          %h4
+            %a#fitting{name: "fitting"}>
+            アイテムの試着
+          %p
+            = image_tag "introduction/ava02.jpg", alt: "アイテムの試着", height: "304", width: "260", class: "pictL"
+            まず、 変更したい部位（髪型･トップ･ボトムなど）を選択してから、それぞれの試着や購入を行います。
+            %br
+            試着したアイテムは、左上のマインドブレイカーイメージに反映されます。
+            %br.clear
+          %p
+            = image_tag "introduction/ava03.jpg", alt: "試着解除", height: "136", width: "300", class: "pictL"
+            試着中のアイテムは[試着]ボタンが[試着解除]ボタンになります。
+            %br
+            元のアイテムに戻したいときは、[試着解除]ボタンを使いましょう。
+            %br.clear
+          %p
+            = image_tag "introduction/ava05.jpg", alt: "試着全解除", height: "165", width: "300", class: "pictL"
+            [試着全解除]ボタンで、試着アイテムは全て解除されます。
+            %br
+            購入・装着済みのアイテムは解除されません。
+            %br.clear
+          %h4
+            %a#myroom_buy{name: "myroom_buy"}>
+            アイテムの購入・装着
+          %p
+            = image_tag "introduction/ava04.jpg", alt: "アイテムの購入・装着", height: "195", width: "300", class: "pictR"
+            試着で気に入ったアイテムが有れば、[購入]ボタンを押します。
+            %br
+            購入確認画面が現れますので、カスタムポイント（Cpt）を確認して、購入です！
+            %br.clear
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#mainunit{name: "mainunit"}>
+            メインユニットでのアバター編集手順
+          %p{style: "font-weight: bold; color: #000;"}
+            ※ネットワークサービスは、2011年2月28日（月曜日） 午前6時00分を持ちまして終了いたしました。メインユニットを使ったアバター編集はおこなえません。
+            %br
+            %br
+          .flortR
+            %ol
+              %li メインユニットで、[決定]を押します。
+              %li
+                メニューで
+                %em> アバター編集
+                を選択し、[決定]を押します。
+              %li 登録済みのNESYSカードを挿入します。
+              %li
+                カテゴリー選択を行います。
+                %a{href: "#buy"} アイテム購入
+                %a{href: "#edit02"} アバターの編集
+              %li 終了のメニューを選択すると、NESYSカードが排出されます。
+          %p
+            = image_tag "introduction/aaa_main_modeSel04.jpg", alt: "アバター編集", height: "150", width: "200", class: "pictL"
+          %hr
+          %h4
+            %a#buy{name: "buy"}>
+            アイテムの購入
+          %p
+            = image_tag "introduction/aaa_avatar01.jpg", alt: "アイテム購入1", height: "150", width: "266", class: "pictL"
+            カテゴリー選択で、アイテムの購入を選択します。
+            %br.clear
+          %p
+            = image_tag "introduction/aaa_avatar02.jpg", alt: "アイテム購入2", height: "150", width: "266", class: "pictL"
+            カスタムポイントでアイテムを購入します。
+            %br.clear
+          %h4
+            %a#edit02{name: "edit02"}>
+            アバターの編集
+          %p
+            = image_tag "introduction/aaa_avatar03.jpg", alt: "アバター編集1", height: "150", width: "266", class: "pictR"
+            カテゴリー選択で、アバターの編集を選択します。
+            %br.clear
+          %p
+            = image_tag "introduction/aaa_avatar04.jpg", alt: "アバター編集2", height: "150", width: "266", class: "pictR"
+            各部位毎に、購入したアイテムの中から装飾品を選択して下さい。
+            %br.clear
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %ul.menuS
+            %li
+              = link_to "はじめに", play_introductions_path
+            %li
+              = link_to "基本ルール", play_rule_introductions_path
+            %li
+              = link_to "カードの役割", play_card_introductions_path
+            %li
+              = link_to "ゲーム画面説明", play_gamen_introductions_path
+            %li
+              = link_to "操作説明", play_operation_introductions_path
+            %li
+              アバター編集
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+      .footer
+        © 2019 Shota Tazawa

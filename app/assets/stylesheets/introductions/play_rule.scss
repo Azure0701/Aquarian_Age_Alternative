@@ -1,0 +1,41 @@
+#mainR {
+  #mainRAaaRule {
+    width: 100%;
+    border: solid 5px #fff;
+    color: #FFF;
+    font-size: 18px;
+    padding: 5px;
+  }
+  
+  table.info {
+    text-align: left;
+    border-collapse: collapse;
+    margin: 5px auto;
+    table-layout: fixed;
+
+    tbody {
+      display: table-row-group;
+      vertical-align: middle;
+      border-color: inherit;
+
+      tr {
+        display: table-row;
+        vertical-align: inherit;
+        border-color: inherit;
+        th {
+          border-right-color: #56A2C4;
+          color: #d2f5ff;
+          background-color: #045B84;
+          border: 1px #d2f5ff solid;
+          padding: 4px 8px;
+        }
+
+        td {
+          background-color: #68A8C3;
+          border: 1px #d2f5ff solid;
+          padding: 4px 8px;
+        }
+      }
+    }
+  }
+}

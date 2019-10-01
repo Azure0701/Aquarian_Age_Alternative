@@ -2,7 +2,7 @@
   .body-wrap
     .base
       .header
-        = link_to image_tag("head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
       = render '/top/header_menu'
       .nav
         - if user_signed_in?
@@ -50,11 +50,11 @@
           %li
             = link_to "ストーリー", story_introductions_path
           %li
-            = link_to "遊び方", root_path
+            = link_to "遊び方", play_introductions_path
           %li
-            = link_to "プレイモード" ,root_path
+            = link_to "プレイモード" ,mode_introductions_path
           %li
-            = link_to "プレイ上のポイント" ,root_path
+            = link_to "プレイ上のポイント" ,point_introductions_path
           %li
             = link_to "カードリスト" ,root_path
           %li
@@ -64,57 +64,57 @@
         #mainR
           %h2#mainRAaaStory アクエリアンエイジの世界
           %ul.menuS
+            %li
+              = link_to "ゲーム概要", summary_introductions_path
             %li ストーリー
           %p
-            = image_tag "aaa_story1.jpg", width: "200", height: "150", alt: "アクエリアンエイジの世界", class: "pictL"
+            = image_tag "introduction/aaa_story1.jpg", width: "200", height: "150", alt: "アクエリアンエイジの世界", class: "pictL"
             %em.j14 永きにわたる人類の歴史。
-            %br/
+            %br
             その裏で密かに地球の覇権を争ってきた、3つの勢力がある。
-            %br/
-            %br/
+            %br
+            %br
             東方の霊力を持つ者たちの連盟、阿羅耶識（あらやしき）。
-            %br/
+            %br
             西洋の魔術師たちの秘密結社、WIZ-DOM（ウィズダム）。
-            %br/
+            %br
             古の異種族の血を引く者たちの軍団、Darklore（ダークロア）。
-            %br.clear/
+            %br.clear
             西洋の占星術にいう、大いなる変革の時代、「Aquarian Age」に至るまで、三つ巴の争いに決着が付くことはなかった。
           %p
             %em.j14 そして現代。人類の中に超能力を持つ世代が現れ始めた。
-            %br/
+            %br
             新人類を自称するその者たちは、旧来の勢力に属することなく、自らEvolutional Generation Organization-E.G.O.（エゴ）という新勢力を組織し、三勢力の争いに加わった。
-            %br.clear/
+            %br.clear
           %p
-            = image_tag "aaa_story2.jpg", width: "200", height: "150", alt: "アクエリアンエイジの世界", class: "pictR"
+            = image_tag "introduction/aaa_story2.jpg", width: "200", height: "150", alt: "アクエリアンエイジの世界", class: "pictR"
             %em.j14 そんな4勢力の争いに一大転機を引き起こしたのが、謎の宇宙人イレイザーの襲来だった。
-            %br/
+            %br
             地球全域に苛烈極まる攻撃をかけるイレイザーに対し、地球の4勢力は初めて一致団結。
             %br/
             かろうじてイレイザーを撤退させることに成功した。
-            %br/
+            %br
             だが、戦いの疲れを癒す間もなく、地球に新たな敵が襲いかかる。
-            %br/
+            %br
             その名も極星帝国（きょくせいていこく）。
-            %br/
+            %br
             異次元にある「もうひとつの地球」から、次元を超えてやってきた侵略者だ。
-            %br/
+            %br
             4勢力は再び協力して、極星帝国に立ち向かう。
-            %br/
+            %br
             しかし強力極まる極星帝国の軍勢を地球から撤退させることはできなかった。
-            %br/
+            %br
             そればかりか、一度は撤退したはずのイレイザーが、今度はさらに強力な艦隊とともに地球に進軍しつつあった…。
           %p
             %em.j14 戦いの鍵はマインドブレイカー。
-            %br/
+            %br
             イレイザーの襲来を目前とした時期、世界中に現れた彼らは、他者を操り、また眠れる素質を覚醒させる能力を持っていた。
-            %br/
+            %br
             特定の勢力に所属せず、単独で闇の戦いに介入し始めた彼らは、その能力を持って各勢力から仲間を集め、独自の目的のために活動しはじめたのだ。
-            %br/
-            = succeed "\u{5730}\u{7403}\u{3001}\u{305d}\u{3057}\u{3066}\u{9280}\u{6cb3}\u{306e}\u{672a}\u{6765}\u{3092}\u{6c7a}\u{3059}\u{308b}\u{30cf}\u{30eb}\u{30de}\u{30b2}\u{30c9}\u{30f3}\u{3068}\u{3082}\u{3044}\u{3046}\u{3079}\u{304d}\u{6df7}\u{6c8c}\u{306e}\u{6642}\u{4ee3}" do
-              %br/
-            %br/
+            %br
+            %br
             %em.j14 Aquarian Ageは、なおも混迷の色を深めていく…。
-            %br.clear/
+            %br.clear
           .linker
             %a{href: "#top"} ▲このページのトップへ
       .footer

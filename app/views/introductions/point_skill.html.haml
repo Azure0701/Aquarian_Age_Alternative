@@ -1,0 +1,254 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render '/top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名:
+          %h3.user-name
+            #edit-show
+              = current_user.username
+            #edit-modal.edit-modal-wrapper
+              .modal
+                .close-modal
+                  %i.fa.fa-2x.fa-times
+                #edit-form
+                  %h2 ユーザー編集
+                  = form_for(current_user) do |f|
+                    %input{name: "_method", type: "hidden", value: "put"}/
+                    %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                    .field
+                      %label{for: "user_username"} Username
+                      %br/
+                      %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                    .field
+                      %label{for: "user_email"} Eメール
+                      %br/
+                      %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                    .field
+                      %label{for: "user_password"} パスワード
+                      %i (6 characters minimum)
+                      %br/
+                      %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                      %br/
+                    .field
+                      %label{for: "user_password_confirmation"} パスワード（確認用）
+                      %br/
+                      %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                    .actions
+                      %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        
+        %ul
+          %li
+            = link_to "ゲーム概要", summary_introductions_path
+          %li
+            = link_to "ストーリー", story_introductions_path
+          %li
+            = link_to "遊び方", play_introductions_path
+          %li
+            = link_to "プレイモード" ,mode_introductions_path
+          %li
+            = link_to "プレイ上のポイント" ,point_introductions_path
+          %li
+            = link_to "カードリスト" ,root_path
+          %li
+            = link_to "ギャラリー" ,root_path
+
+      .main
+        #mainR
+          #pointBody
+          %a#top{name: "top"}
+          %h2#mainRAaaSkill スキル編
+          %ul.menuS
+            %li
+              = link_to "ゲーム概要", summary_introductions_path
+            %li
+              = link_to "プレイ上のポイント", point_introductions_path
+            %li
+              スキル編
+          #hlink
+            %ul
+              %li
+                %a{href: "#skill1"} スキルを使いこなせ！
+              %li
+                %a{href: "#skill2"} スキルの種類を知ろう！
+              %li
+                %a{href: "#skill3"} スキルを組み合わせよう！
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+          %h3
+            %a#skill1{name: "skill1"}>
+            スキルを使いこなせ！
+          %ul
+            %li
+              スキルは
+              %em> ブレイクした状態のカードを裏返すことで発動
+              します（カードの“表” “裏”とは関係ないので注意しましょう）。
+            %li カードを裏返したままにするとスキルを発動し続けます。
+            %li スキル発動中は移動、および直接攻撃をすることができません。
+          %p ここでは代表的なスキルと、その使い方を紹介します。
+          = image_tag "introduction/point_1_01.gif", alt: "カード図の説明", height: "90", width: "460", class: "pict"
+          %h4 1、光弾系
+          %p
+            = image_tag "introduction/point_1_01.jpg", alt: "賢者“マーリン”", height: "130", width: "200", class: "pictL"
+          .flortR
+            %dl
+              %dt
+                %a{href: "list_3wiz.html#card0031"}
+                  賢者“マーリン”　
+                  %br/
+                  「エンシェントアロー」
+              %dd 相手にダメージを与える光弾を放つ
+          %hr
+          %p
+            = image_tag "introduction/point_1_02.gif", alt: "解説図", height: "130", width: "200", class: "pictL"
+            カードを裏返した位置に向かって光弾を放ちます。 裏返したカードを標的の上に乗せれば、そこを狙って光弾が飛んでいきます。
+          %hr
+          %p
+            = image_tag "introduction/point_1_03.gif", alt: "解説図", height: "130", width: "200", class: "pictL"
+            カードを裏返したまま位置を動かせば、光弾の狙いをそのまま変えることが出来ます。
+          %hr/
+          %h4 2、地雷系
+          %p
+            = image_tag "introduction/point_1_02.jpg", alt: "闇黒の魔道師“ステラ・ブラヴァツキ”", height: "130", width: "200", class: "pictL"
+          .flortR
+            %dl
+              %dt
+                %a{href: "list_3wiz.html#card0040"}
+                  闇黒の魔道師“ステラ・ブラヴァツキ”　
+                  %br
+                  「マレフィキア」
+              %dd 範囲内の相手にダメージを与える
+          %hr
+          %p
+            = image_tag "introduction/point_1_04.gif", alt: "解説図", height: "130", width: "200", class: "pictL"
+            カードを裏返した位置に地雷を設置します。
+          %hr
+          %p
+            = image_tag "introduction/point_1_05.gif", alt: "解説図", height: "130", width: "200", class: "pictL"
+            カードを裏返したまま動かすことによって、地雷をばら撒くことができます。
+          %hr/
+          %h4 3、テレポート系
+          %p
+            = image_tag "introduction/point_1_03.jpg", alt: "アークエンジェル“ウリエル”　", height: "130", width: "200", class: "pictL"
+          .flortR
+            %dl
+              %dt
+                %a{href: "list_6era.html#card0076"}
+                  アークエンジェル“ウリエル”　
+                  %br
+                  「エスケープ」
+              %dd カードの場所にテレポートする
+          %hr
+          %p
+            = image_tag "introduction/point_1_06.gif", alt: "解説図", height: "130", width: "200", class: "pictL"
+            カードを裏返した位置にテレポートすることができます。
+          %hr
+          %p
+            = image_tag "introduction/point_1_07.gif", alt: "解説図", height: "130", width: "200", class: "pictL"
+            テレポートした先で、さらにカードを裏返し（スキルを解除して）直接相手に攻撃を仕掛けましょう。
+          %hr
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#skill2{name: "skill2"}>
+            スキルの種類を知ろう！
+          %p
+            スキルには3種類の属性があります。その特徴を覚えておきましょう。
+            %br.clear
+          %h4 [強化] 自分や味方を強化するスキルです。
+          = image_tag "introduction/point_1_04.jpg", alt: "ジャンクボーグ“紫原瑞希”", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %dl
+              %dt
+                %a{href: "list_1ego.html#card0007"}
+                  ジャンクボーグ
+                  %br
+                  “紫原瑞希”
+                  %br>
+                  　
+                  「リカバリー」
+              %dd このキャラクターが受けるダメージを一定時間軽減する
+          %hr
+          %h4 [妨害] 相手の行動を妨害するスキルです。
+          = image_tag "introduction/point_1_05.jpg", alt: "インフィニティ・アイ“万条目千里”", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %dl
+              %dt
+                %a{href: "list_1ego.html#card0004"}
+                  インフィニティ・アイ
+                  %br
+                  “万条目千里”　
+                  %br
+                  「オッド・アイ」
+              %dd
+                [妨害]相手キャラクターのスキルと相手マインドブレイカーのエナジー蓄積･バトルセンスを一定時間封じる光弾を放つ。
+                %br
+                ただし[常時]は封じることができない。
+          %hr
+          %h4 [常時] カードを裏返さずとも常時効果を発揮するスキルです。
+          = image_tag "introduction/point_1_06.jpg", alt: "ディーヴィー“神妃パールヴァティ”", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %dl
+              %dt
+                %a{href: "list_4drk.html#card0056"}
+                  ディーヴィー
+                  %br
+                  “神妃パールヴァティ”
+                  %br>
+                  「多重神格」
+              %dd [常時]ブレイクされていると効果を発揮する。戦闘不能になったキャラクターのパワーをコピーする。
+          %hr
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#skill3{name: "skill3"}>
+            スキルを組み合わせよう！
+          %p
+            スキルは別のスキルと組み合わせることで、強烈なコンビネーションを誕生させることがあります。
+            %br
+            ここではその一例を紹介しましょう。
+          .boxHarf
+            %dl
+              %dt
+                %a{href: "list_4drk.html#card0057"}
+                  氷海神“セドナ”
+                  %br
+                  「海神の怒り」
+              %dd
+                [強化]範囲内の味方キャラクター
+                %br
+                のパワーが一定時間上昇する。
+            %dl
+              %dt
+                %a{href: "list_2ara.html#card0026"}
+                  戦巫女“弓削遙”
+                  %br
+                  「タケミカヅチ」
+              %dd
+                範囲内の相手にダメージを与える。
+                %br
+                ダメージはこのキャラクターのパワーで上下する。
+            = image_tag "introduction/point_1_07.jpg", alt: "スキルの組み合わせ・解説図", height: "288", width: "460"
+          %ul.menuS
+            %li スキル編
+            %li
+              = link_to "オルタレーション編", point_alter_introductions_path
+            %li
+              %a{href: "point_3battlesense.html"} バトルセンス編
+            %li
+              %a{href: "point_4technique.html"} テクニック編
+            %li
+              %a{href: "point_5deckmake.html"} 戦術＆デッキメイク編
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+      .footer
+        © 2019 Shota Tazawa

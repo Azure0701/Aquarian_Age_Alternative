@@ -1,0 +1,113 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render '/top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名:
+          %h3.user-name
+            #edit-show
+              = current_user.username
+            #edit-modal.edit-modal-wrapper
+              .modal
+                .close-modal
+                  %i.fa.fa-2x.fa-times
+                #edit-form
+                  %h2 ユーザー編集
+                  = form_for(current_user) do |f|
+                    %input{name: "_method", type: "hidden", value: "put"}/
+                    %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                    .field
+                      %label{for: "user_username"} Username
+                      %br/
+                      %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                    .field
+                      %label{for: "user_email"} Eメール
+                      %br/
+                      %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                    .field
+                      %label{for: "user_password"} パスワード
+                      %i (6 characters minimum)
+                      %br/
+                      %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                      %br/
+                    .field
+                      %label{for: "user_password_confirmation"} パスワード（確認用）
+                      %br/
+                      %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                    .actions
+                      %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        
+        %ul
+          %li
+            = link_to "ゲーム概要", summary_introductions_path
+          %li
+            = link_to "ストーリー", story_introductions_path
+          %li
+            = link_to "遊び方", play_introductions_path
+          %li
+            = link_to "プレイモード" ,root_path
+          %li
+            = link_to "プレイ上のポイント" ,root_path
+          %li
+            = link_to "カードリスト" ,root_path
+          %li
+            = link_to "ギャラリー" ,root_path
+
+      .main
+        #mainR
+          %a#top{name: "top"}
+          %h2#mainRAaaSousa 操作説明
+          %ul.menuS
+            %li
+              = link_to "ゲーム概要", summary_introductions_path
+            %li
+              = link_to "遊び方", play_introductions_path
+            %li
+              操作説明
+          %h3 サテライトの操作
+          %p サテライトの各操作部の名称と操作方法です。
+          %p
+            = image_tag "introduction/aaa_sousa_satellite.jpg", alt: "サテライト", class: "pict"
+          %h4 1、ジョイスティック
+          %p 項目の選択
+          %h4 2、決定・ダッシュボタン
+          %p セレクト画面での決定や、ゲームプレイ中ダッシュするときに使います。
+          %h4 3、キャンセル・バトルセンス発動ボタン
+          %p セレクト画面でのキャンセルや、ゲームプレイ中バトルセンスを発動させるときに使います。
+          %h4 4、プレイスクリーン
+          %p カードを配置して操作します。
+          %h4 5、NESYSカードリーダー
+          %p
+            専用NESYSカードをセットするとプレイデータが読み込まれます。
+            %em> 専用NESYSカードは横向きにセットしてください
+            。
+          %h4 6、プレイカード排出口
+          %p プレイ終了後、プレイカード（キャラクターカードまたはオルタレーションカード）が1枚排出されます。
+          %h4 7、コイン投入口
+          %p プレイ料金をここから投入します。
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %ul.menuS
+            %li
+              = link_to "はじめに", play_introductions_path
+            %li
+              = link_to "基本ルール", play_rule_introductions_path
+            %li
+              = link_to "カードの役割", play_card_introductions_path
+            %li
+              = link_to "ゲーム画面説明", play_gamen_introductions_path
+            %li
+              操作説明
+            %li
+              = link_to "アバター編集", play_avatar_introductions_path
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+      .footer
+        © 2019 Shota Tazawa

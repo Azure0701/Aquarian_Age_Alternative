@@ -1,0 +1,129 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render '/top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名:
+          %h3.user-name
+            #edit-show
+              = current_user.username
+            #edit-modal.edit-modal-wrapper
+              .modal
+                .close-modal
+                  %i.fa.fa-2x.fa-times
+                #edit-form
+                  %h2 ユーザー編集
+                  = form_for(current_user) do |f|
+                    %input{name: "_method", type: "hidden", value: "put"}/
+                    %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                    .field
+                      %label{for: "user_username"} Username
+                      %br/
+                      %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                    .field
+                      %label{for: "user_email"} Eメール
+                      %br/
+                      %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                    .field
+                      %label{for: "user_password"} パスワード
+                      %i (6 characters minimum)
+                      %br/
+                      %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                      %br/
+                    .field
+                      %label{for: "user_password_confirmation"} パスワード（確認用）
+                      %br/
+                      %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                    .actions
+                      %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        
+        %ul
+          %li
+            = link_to "ゲーム概要", summary_introductions_path
+          %li
+            = link_to "ストーリー", story_introductions_path
+          %li
+            = link_to "遊び方", play_introductions_path
+          %li
+            = link_to "プレイモード" ,mode_introductions_path
+          %li
+            = link_to "プレイ上のポイント" ,point_introductions_path
+          %li
+            = link_to "カードリスト" ,root_path
+          %li
+            = link_to "ギャラリー" ,root_path
+
+      .main
+        #mainR
+          %h2#mainRAaaPoint プレイ上のポイント
+          %h3
+            %a#point_1{name: "point_1"}>
+            スキル編
+          %p
+            = image_tag "introduction/point_1.jpg", alt: "スキル編", height: "150", width: "200", class: "pictL"
+            代表的なスキルの効果と、使い方を紹介します。
+            %br.clear
+          .linker
+            = link_to image_tag("introduction/main_iconsyousai.gif", alt: "詳細を見る"),point_skill_introductions_path
+          %p
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#point_2{name: "point_2"}>
+            オルタレーション編
+          %p
+            = image_tag "introduction/point_2.jpg", alt: "オルタレーション編", height: "150", width: "200", class: "pictL"
+            代表的なオルタレーションの効果と、使い方を紹介します。
+            %br.clear
+          .linker
+            = link_to image_tag("introduction/main_iconsyousai.gif", alt: "詳細を見る"), point_alteration_introductions_path
+          %p
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#point_3{name: "point_3"}>
+            バトルセンス編
+          %p
+            = image_tag "introduction/point_3.jpg", alt: "バトルセンス編", height: "150", width: "200", class: "pictL"
+            バトルセンスを発動させるまでの手順の解説です。
+            %br.clear
+          .linker
+            = link_to image_tag("introduction/main_iconsyousai.gif", alt: "詳細を見る"), point_battlesense_introductions_path
+          %p
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#point_4{name: "point_4"}>
+            テクニック編
+          %p
+            = image_tag "introduction/point_4.jpg", alt: "テクニック編", height: "150", width: "200", class: "pictL"
+            基本的なテクニックを解説します。
+            %br.clear
+          .linker
+            = link_to image_tag("introduction/main_iconsyousai.gif", alt: "詳細を見る"), point_technique_introductions_path
+          %p
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#point_5{name: "point_5"}>
+            戦術＆デッキメイク編
+          %p
+            = image_tag "introduction/point_5.jpg", alt: "戦術＆デッキメイク編", height: "150", width: "200", class: "pictL"
+            お薦めのデッキをいくつか紹介します。
+            %br.clear
+          .linker
+            = link_to image_tag("introduction/main_iconsyousai.gif", alt: "詳細を見る"),point_deckmake_introductions_path
+          %p
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+      .footer
+        © 2019 Shota Tazawa

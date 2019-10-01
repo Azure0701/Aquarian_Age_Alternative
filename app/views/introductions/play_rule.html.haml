@@ -1,0 +1,263 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render '/top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名:
+          %h3.user-name
+            #edit-show
+              = current_user.username
+            #edit-modal.edit-modal-wrapper
+              .modal
+                .close-modal
+                  %i.fa.fa-2x.fa-times
+                #edit-form
+                  %h2 ユーザー編集
+                  = form_for(current_user) do |f|
+                    %input{name: "_method", type: "hidden", value: "put"}/
+                    %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                    .field
+                      %label{for: "user_username"} Username
+                      %br/
+                      %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                    .field
+                      %label{for: "user_email"} Eメール
+                      %br/
+                      %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                    .field
+                      %label{for: "user_password"} パスワード
+                      %i (6 characters minimum)
+                      %br/
+                      %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                      %br/
+                    .field
+                      %label{for: "user_password_confirmation"} パスワード（確認用）
+                      %br/
+                      %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                    .actions
+                      %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        
+        %ul
+          %li
+            = link_to "ゲーム概要", summary_introductions_path
+          %li
+            = link_to "ストーリー", story_introductions_path
+          %li
+            = link_to "遊び方", play_introductions_path
+          %li
+            = link_to "プレイモード" ,root_path
+          %li
+            = link_to "プレイ上のポイント" ,root_path
+          %li
+            = link_to "カードリスト" ,root_path
+          %li
+            = link_to "ギャラリー" ,root_path
+
+      .main
+        #mainR
+          %a#top{name: "top"}
+          %h2#mainRAaaRule 基本ルール
+          %ul.menuS
+            %li
+              = link_to "ゲーム概要", summary_introductions_path
+            %li
+              = link_to "遊び方", play_introductions_path
+            %li 基本ルール
+          #hlink
+            %ul
+              %li
+                %a{href: "#point"} ゲームの特徴
+              %li
+                %a{href: "#rule"} ルール
+              %li
+                %a{href: "#flow"} バトルの流れ
+          %p
+            %span>= link_to "ギャラリー", root_path
+            で
+            %span>= link_to "チュートリアルデモムービー", root_path
+            を公開中です。あわせてご覧下さい。
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+          %h3
+            %a#point{name: "point"}>
+            ゲームの特徴
+          %h4 相手マインドブレイカーを倒せ！
+          %p
+            = image_tag "introduction/aaa_rule2.jpg", alt: "ブレイク", height: "150", width: "200", class: "pictL"
+            このゲームは、プレイヤーが「マインドブレイカー」となり、「キャラクター」を
+            %em> ブレイク
+            し、
+            「オルタレーション（魔法）」を駆使して「アクエリアンエイジ」の世界を戦い抜くゲームです。
+          %p
+            自分のマインドブレイカーを守りながら、相手のマインドブレイカーを攻撃する、攻防一体となった駆け引きがこのゲームの特徴です。
+            %br.clear
+          %p
+            ※このゲームでは、キャラクターをマインドブレイカーの支配下に置き、意のままに操ることを
+            %em> ブレイク
+            と呼びます。
+          %h4 カードを動かすとキャラクターも動く！
+          %p カードの動きと向きは、画面のキャラクターと連動します。
+          %p
+            = image_tag "introduction/aaa_rule14.jpg", alt: "カードの動きと向き", height: "115", width: "200", class: "pictL"
+            = image_tag "introduction/aaa_rule15.jpg", alt: "カードの動きと向き", height: "115", width: "200", class: "pictL"
+            %br.clear
+          %h4
+            %a#turn{name: "turn"}>
+            カードを裏返せ！
+          %p
+            = image_tag "introduction/aaa_yakuwari_turn.jpg", alt: "カードをターンアップ", height: "150", width: "200", class: "pictR"
+            このゲームの特徴は「カードを裏返す」アクションです。カードを裏返すことによって、キャラクター固有の
+            %em> スキル
+            が発動します。
+            %br
+            %br
+            カードを裏返している間、キャラクターはスキルを発動し続けます。
+            ただし、その間キャラクターは移動することができません。移動させたい場合は、もう一度裏返して元に戻します。
+            %br
+            また、スキルは裏返したカードを置いた場所に向かって効果を発揮するものが多くあります。（ただし、スキルの発動には時間がかかることがあります。）
+          %p
+            %br.clear
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#rule{name: "rule"}>
+            ルール
+          %ul
+            %li 相手マインドブレイカーを攻撃し、倒してください。
+            %li 3ラウンド勝負で、2ラウンド先取です。
+          %h4 勝利条件
+          %ul
+            %li 相手マインドブレイカーのHPをゼロにする。
+            %li 制限時間終了時に相手マインドブレイカーより多くのHPを残す。
+          %h4 敗北条件
+          %ul
+            %li マインドブレイカーのHPがゼロになる。
+          %p
+            = image_tag "introduction/aaa_rule6.jpg", alt: "ルール1", class: "pictL"
+            キャラクターはプレイスクリーン上でカードを動かして操作します。
+            %br
+            プレイ中のプレイスクリーンには、全体マップに自分や相手キャラクターの位置が表示されます。
+            %br.clear
+          %p
+            = image_tag "introduction/aaa_rule2.jpg", alt: "ルール2", class: "pictL"
+            キャラクターは、相手キャラクターと接触すると直接攻撃を開始します。
+            %br.clear
+          %p
+            = image_tag "introduction/aaa_rule3.jpg", alt: "ルール3", class: "pictL"
+            キャラクターのHPがなくなると、そのキャラクターはバトルフィールドから除外されます。
+            %br
+            キャラクターカードをプレイスクリーンから取り除くと、一定時間後に再度ブレイクが可能になります。
+            %br.clear
+          %p
+            = image_tag "introduction/aaa_rule4.jpg", alt: "ルール4", class: "pictL"
+            1バトルは3ラウンド勝負で、2ラウンド先取です。
+            %br.clear
+          %p
+            = image_tag "introduction/aaa_rule5.jpg", alt: "ルール5", class: "pictL"
+            バトル終了後にキャラクターカード、またはオルタレーションカードが1枚排出されます。
+            %br.clear
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#flow{name: "flow"}>
+            バトルの流れ
+          %h4 初めてプレイする場合は、まずチュートリアルを！
+          %p
+            = image_tag "introduction/aaa_rule7.jpg", alt: "チュートリアル", height: "150", width: "200", class: "pictL"
+            %a{href: "mode.html"}> モードセレクト
+            で
+            %em> チュートリアルプレイ
+            を選択すると、 遊びながら基本的なルールや操作をマスターする事ができます。
+            %br.clear
+          %h4 使用カードを登録
+          %p
+            = image_tag "introduction/aaa_rule8.jpg", alt: "カードを登録", height: "150", width: "200", class: "pictL"
+            バトルに使用するカードを登録します。
+            1回のバトルで、ここで登録した以外のカードは使用できません。組み合わせは自由ですが、登録可能な枚数に制限があります。
+          %table.info{cellspacing: "0", summary: "1回のバトルで登録可能な"}
+            %tbody
+              %tr
+                %th.sizeM{scope: "row"} マインドブレイカーカード
+                %td 1枚必須
+              %tr
+                %th{scope: "row"} キャラクターカード
+                %td 5枚まで
+              %tr
+                %th{scope: "row"} オルタレーションカード
+                %td 2枚まで
+          %br.clear
+          %p
+          %h4 バトル開始！どうやって攻める？
+          .flortR
+            %ol
+              %li
+                最初はエナジーのストックが少ないので、ブレイクに必要なエナジーが少ないキャラクターをブレイクするか、
+                マインドブレイカーをしばらく静止させて、エナジーを溜めましょう。同時にブレイクできるキャラクターカードは3枚までです。
+              %li 同じ勢力の色のエナジーが溜まったら、キャラクターカードをプレイスクリーンに置いてキャラクターをブレイクします。
+              %li キャラクター同士がぶつかり合うと、直接攻撃を開始して、それぞれの勢力の色のエナジー生成されます。
+              %li
+                接触した時に、キャラクターの向きによってはダメージが大きくなります。カードの向きに注意して下さい。
+                %em>
+                  カードの操作中にダッシュボタンを押すと、一定時間素早く移動できます。
+          %p
+            = image_tag "introduction/aaa_rule9.jpg", alt: "バトル開始！", height: "150", width: "200", class: "pictL"
+          %hr
+          %h4 キャラクターのスキルは、カードを裏返して発動！
+          %p
+            = image_tag "introduction/aaa_rule10.jpg", alt: "スキルを発動", height: "150", width: "200", class: "pictL"
+            %em キャラクターをブレイクすると、カードを裏返す事で、スキルを発動する事ができます。
+            %br
+            しかし、スキルの性能によって「発動までの時間」「再使用可能になるまでの待ち時間」が異なります。
+            %br
+            スキルの発動を止めて移動させたい時は、カードをもう一度裏返して元に戻します。
+            %br.clear
+          %h4 スキルより強力な効果は２つ！
+          .flortR
+            %ul
+              %li
+                オルタレーションカードを置くと、強力な魔法効果を発揮します。オルタレーションカードは強力ですが、
+                1枚1バトルにつき1回のみ使用可能です。使うタイミングと消費するエナジーには注意！
+              %li バトルセンスは3種類から選べる超必殺技です。エナジーゲージを10ポイント消費するので、使うタイミングが重要です。
+          %p
+            = image_tag "introduction/aaa_rule11.jpg", alt: "スキルより強力な効果", height: "150", width: "200", class: "pictL"
+          %hr
+          %h4 相手のマインドブレイカーを狙え！
+          %p
+            = image_tag "introduction/aaa_rule12.jpg", alt: "相手のマインドブレイカー", height: "150", width: "200", class: "pictL"
+            狙うはただ1人、相手のマインドブレイカーです。
+            マインドブレイカーのHPをゼロにする事で勝利となります。
+          %p
+            %em 頭上の王冠マークがマインドブレイカーの印です。
+            %br.clear
+          %h4 戦闘不能になったら、スクリーン外に出して復活を待て！
+          %p
+            = image_tag "introduction/aaa_rule13.jpg", alt: "戦闘不能", height: "150", width: "200", class: "pictL"
+            ダメージを受けて戦闘不能になったキャラクターは、一旦プレイスクリーンから取り除き、
+            一定時間が過ぎると再度ブレイクが可能になります。再ブレイクにもエナジーは必要になります。
+            %br.clear
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %ul.menuS
+            %li
+              = link_to "はじめに", play_introductions_path
+            %li
+              基本ルール
+            %li
+              = link_to "カードの役割", play_card_introductions_path
+            %li
+              = link_to "ゲーム画面説明", play_gamen_introductions_path
+            %li
+              = link_to "操作説明", play_operation_introductions_path
+            %li
+              = link_to "アバター編集", play_avatar_introductions_path
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+      .footer
+        © 2019 Shota Tazawa

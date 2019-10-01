@@ -1,0 +1,66 @@
+#mainR {
+  #mainRAaaSkill {
+    width: 100%;
+    border: solid 5px #fff;
+    color: #FFF;
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  .flortR {
+
+    dl dt {
+      background: url("introduction/example.gif") no-repeat 0px 3px;
+      padding: 5px 5px 5px 25px;
+      color: #1F1F1F;
+    }
+  }
+
+  .pointPctL {
+    float: left;
+    border: 2px solid #E1DF80;
+    margin: 5px 10px 5px 20px;
+  }
+
+  .flortRM {
+    float: right;
+    width: 185px;
+    
+    dl dt {
+      background: url("introduction/example.gif") no-repeat 0px 3px;
+      padding: 5px 5px 5px 25px;
+      color: #1F1F1F;
+    }
+  }
+
+  .boxHarf {
+    width: 464px;
+    margin: 0px auto;
+    padding: 0px 0px 10px;
+
+    dl {
+      width: 232px;
+      float: left;
+
+      dt {
+        background: url("introduction/example.gif") no-repeat 0px 3px;
+        padding: 5px 5px 5px 25px;
+        color: #1F1F1F;
+      }
+
+      dd {
+        font-weight: bold;
+        color: #1F1F1F;
+        margin: 0px;
+        padding: 2px;
+      }
+    }
+
+    img {
+      border: 2px solid #E1DF80;
+      display: block;
+      clear: both;
+    }
+  }
+  
+}

@@ -1,0 +1,79 @@
+#mainR {
+  #mainRAaaStart {
+    width: 100%;
+    border: solid 5px #fff;
+    color: #FFF;
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  #hlink {
+
+    li {
+      padding: 2px 2px 2px 10px;
+      background: url("introduction/pan.gif") no-repeat scroll left center;
+    }
+
+    a {
+      color: #FFFFFF;
+      font-weight: bold;
+      text-decoration: none;
+      outline: none;
+    }
+  }
+
+  .flortL {
+    width: 260px;
+    float: left;
+
+    li {
+      margin-left: 15px;
+    }
+
+     a {
+      color: #FFFFFF;
+      font-weight: bold;
+      text-decoration: none;
+      outline: none;
+    }
+  }
+
+  ol, ul {
+    font-size: 12px;
+    line-height: 140%;
+    margin: 10px;
+    padding: 10px;
+
+    li {
+      padding: 3px 3px 3px 10px;
+    }
+  }
+
+  hr {
+    visibility: hidden;
+    clear: both;
+  }
+
+  p {
+    margin: 0px;
+    padding: 5px 20px 5px;
+
+    .pictLn {
+      margin: 0px 10px 5px 0;
+      float: left;
+    }
+  }
+
+  .flortR {
+    width: 260px;
+    float: right;
+  }
+  
+  a {
+    color: #FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+    outline: none;
+  }
+}
+

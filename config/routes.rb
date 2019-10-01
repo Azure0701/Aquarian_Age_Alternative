@@ -19,6 +19,20 @@ Rails.application.routes.draw do
     collection do
       get :summary
       get :story
+      get :play
+      get :play_buystart
+      get :play_rule
+      get :play_card
+      get :play_gamen
+      get :play_operation
+      get :play_avatar
+      get :mode
+      get :point
+      get :point_skill
+      get :point_alteration
+      get :point_battlesense
+      get :point_technique
+      get :point_deckmake
     end
   end
 

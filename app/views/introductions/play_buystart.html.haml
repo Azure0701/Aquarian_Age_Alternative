@@ -1,0 +1,271 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render '/top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名:
+          %h3.user-name
+            #edit-show
+              = current_user.username
+            #edit-modal.edit-modal-wrapper
+              .modal
+                .close-modal
+                  %i.fa.fa-2x.fa-times
+                #edit-form
+                  %h2 ユーザー編集
+                  = form_for(current_user) do |f|
+                    %input{name: "_method", type: "hidden", value: "put"}/
+                    %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                    .field
+                      %label{for: "user_username"} Username
+                      %br/
+                      %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                    .field
+                      %label{for: "user_email"} Eメール
+                      %br/
+                      %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                    .field
+                      %label{for: "user_password"} パスワード
+                      %i (6 characters minimum)
+                      %br/
+                      %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                      %br/
+                    .field
+                      %label{for: "user_password_confirmation"} パスワード（確認用）
+                      %br/
+                      %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                    .actions
+                      %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        
+        %ul
+          %li
+            = link_to "ゲーム概要", summary_introductions_path
+          %li
+            = link_to "ストーリー", story_introductions_path
+          %li
+            = link_to "遊び方", play_introductions_path
+          %li
+            = link_to "プレイモード" ,root_path
+          %li
+            = link_to "プレイ上のポイント" ,root_path
+          %li
+            = link_to "カードリスト" ,root_path
+          %li
+            = link_to "ギャラリー" ,root_path
+
+      .main
+        #mainR
+          %a#top{name: "top"}
+          %h2#mainRAaaStart はじめに
+          %ul.menuS
+            %li
+              = link_to "ゲーム概要", summary_introductions_path
+            %li
+              = link_to "遊び方", play_buystart_introductions_path
+            %li はじめに
+          #hlink
+            %p{style: "font-weight: bold; color: #000;"} ※ネットワークサービスは2011年2月28日（月曜日） 午前6時00分を持ちまして終了いたしました。NESYSカードを使ってプレイしてもデータは記録されません。また、データの引き継ぎを行うことはできません。
+            %ul
+              %li
+                %a{href: "#firstPlay"} はじめてゲームをプレイする場合
+              %li
+                %a{href: "#buyStartPack"} スターターパックを購入する
+              %li
+                %a{href: "#nesysCard"} NESYSカードについて
+              %li
+                %a{href: "#dataCopy"} データを引継ぐには
+              %li
+                %a{href: "#cards"} カードの取り扱いに関するお願い
+          .linker
+            %a{href: "asobi.html#start"}
+              = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+          %h3
+            %a#firstPlay{name: "firstPlay"}>
+            はじめてゲームをプレイする場合
+          .flortL
+            %ol
+              %li
+                %em> メインユニット
+                で、
+                %a{href: "#buyStartPack"}> スターターパックを購入
+                します。
+              %li
+                %em> サテライト
+                に、表示されている価格分のコインを投入して下さい。
+              %li
+                %a{href: "#nesysCard"}> NESYSカード
+                をサテライトのNESYSカードリーダーにセットします。
+              %li マインドブレイカーの名前を登録します。
+              %li
+                英数字+記号4文字の
+                %em> パスワード
+                を設定して下さい。
+              %li
+                %a{href: "mode.html"}> モード
+                を選びます。 	はじめてのプレイでは、
+                %em> チュートリアルプレイ
+                をおすすめします。
+          %p
+            = image_tag "introduction/aaa_start_cabi.jpg", alt: "筐体", class: "pictR"
+          %hr
+          %p
+            = image_tag "introduction/aaa_caution.gif", width: "56", height: "50", alt: "注意！", class: "pictLn"
+            %em> パスワード
+            は、後日公開予定の連動WEBサービス「
+            %em> マイルーム
+            」を取得する時に必要です。 忘れない様、ご注意下さい。
+            %br
+            ※お問い合わせを受けても、お教えする事はできません。
+            %br.clear
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#buyStartPack{name: "buyStartPack"}>
+            スターターパックを購入する
+          %p
+            = image_tag "introduction/aaa_whats_sbox.jpg", width: "150", height: "150", alt: "注意！", class: "pictL"
+            ゲームを始めるにはまず、スターターパックが必要です。
+            %br
+            スターターパックはメインユニットで購入して下さい。
+            %br.clear
+          %h4 購入手順
+          .flortR
+            %ol
+              %li メインユニットで、[決定]を押します。
+              %li
+                メニューで
+                %em> 各種パック購入
+                を選択し、[決定]を押します。
+              %li
+                商品選択で
+                %em> スターターパック
+                を選択し、[決定]を押します。
+              %li 筐体に表示されている価格分のコインを投入して下さい。（メーカー希望小売価格　500円：税込）
+              %li パックが排出されます。
+          %p
+            = image_tag "introduction/aaa_main_modeSel01.jpg", alt: "スターターパック購入", class: "pictL"
+          %hr
+          %h4 スターターパックの内容
+          %p
+            = image_tag "introduction/aaa_starter.jpg", alt: "スターターパックの内容", class: "pict"
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#nesysCard{name: "nesysCard"}>
+            NESYSカードについて
+          %p{style: "font-weight: bold; color: #000;"} ※ネットワークサービスは2011年2月28日（月曜日） 午前6時00分を持ちまして終了いたしました。NESYSカードを使ってプレイしてもデータは記録されません。
+          %h4 NESYSカードとは？
+          %p プレイヤーの情報をサーバーに記録する為の、認証用カードです。
+          %h4 使用可能回数に関して
+          %ul
+            %li NESYSカードの使用可能回数は100回です。
+            %li
+              使用可能回数が0になると、カードは使用不可能になりますが、
+              %a{href: "#dataCopy"}> NESYSカードの引継ぎ
+              でデータを新しいカードに引継ぐ事が可能です。
+          %h4 プレイデータの保存に関して
+          %ul
+            %li 回線の通信状況等によって、データ保存が正常に行えない場合があります。あらかじめご了承下さい。
+            %li 万が一、データ保存が正常に行われなかった場合、カードの使用回数は減りません。
+          %h4 カードのお取り扱いに関して
+          %p NESYSカードは大変デリケートです、以下の事に注意してください。
+          .flortL
+            %ul
+              %li 曲げないでください。
+              %li 磁気に近づけないでください。
+              %li 強い衝撃を与えないでください。
+              %li 高所から落とさないでください。
+              %li 叩いたりしないでください。
+              %li むき出しの状態や、折れ曲がる入れ物等に入れて持ち運ぶのは破損の原因になりますのでおやめ下さい。
+          %p
+            = image_tag "introduction/aaa_whats_card.jpg", alt: "NESYSカード", class: "pictR"
+          %hr
+          %p 尚、破損した場合の再発行・引継ぎは行っておりませんので、あらかじめご了承ください。
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#dataCopy{name: "dataCopy"}>
+            データを引継ぐには
+          %p{style: "font-weight: bold; color: #000;"}
+            ※ネットワークサービスは2011年2月28日（月曜日） 午前6時00分を持ちまして終了いたしました。NESYSカードのデータ引き継ぎは行えません。
+            %br/
+            %br/
+          %p 使用可能回数が0になったカードは、カードの更新でデータを新しいカードに引継ぐ事ができます。
+          %h4 NESYSカードを購入する
+          .flortR
+            %ol
+              %li メインユニットで、[決定]を押します。
+              %li
+                メニューで
+                %em> 各種パック購入
+                を選択し、[決定]を押します。
+              %li
+                商品選択で
+                %em> NESYSカードパック
+                を選択し、[決定]を押します。
+              %li 筐体に表示されている価格分のコインを投入して下さい。（メーカー希望小売価格　300円：税込）
+              %li パックが排出されます。
+          %p
+            = image_tag "introduction/aaa_main_modeSel02.jpg", alt: "NESYSカードを購入する", height: "250", width: "200", class: "pictL"
+          %hr/
+          %h4 NESYSカードの引継ぎ
+          %p{style: "font-weight: bold; color: #000;"}
+            ※ネットワークサービスは2011年2月28日（月曜日） 午前6時00分を持ちまして終了いたしました。NESYSカードの引き継ぎは行えません。
+            %br/
+            %br/
+          .flortR
+            %ol
+              %li メインユニットで、[決定]を押します。
+              %li
+                メニューで
+                %em> NESYSカードの引継ぎ
+                を選択し、[決定]を押します。
+              %li
+                使用可能回数の切れたNESYSカードを挿入します。
+                %em ※排出後は使用できなくなります。
+              %li あらかじめ購入した未使用NESYSカードを挿入します。デーの移動後、自動的に排出されます。
+              %li これでデータの引継ぎは完了です。新しいカードでゲームをお楽しみ下さい。
+          %p
+            = image_tag "introduction/aaa_main_modeSel03.jpg", alt: "NESYSカードを購入する", height: "150", width: "200", class: "pictL"
+          %hr/
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#cards{name: "cards"}>
+            カードの取り扱いに関するお願い
+          %p
+            = image_tag "introduction/aaa_caution.gif", width: "56", height: "50", alt: "注意！", class: "pictLn"
+            カード（マインドブレイカーカード、オルタレーションカード、キャラクターカード）表面には、プレイスクリーンで読み取る為の特殊印刷が施されています。快適に遊ぶ為に、以下の点にご注意下さい。
+            %br.clear/
+          %p
+            = image_tag "introduction/aaa_card_caution.jpg", alt: "カードの取り扱いに関する注意", class: "pict"
+          %ul
+            %li カード表面を保護する為、貼付のカードスリーブや、市販の収納ケースをご利用下さい。
+            %li カード表面を激しくこすったり、折曲げたりしないで下さい。
+            %li 模様やキズの入ったカードスリーブは使用しないで下さい。
+          %p また、製品の性質上、交換や返却の受付は行っておりません。あらかじめご了承いただきます様、お願い申し上げます。
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %ul.menuS
+            %li はじめに
+            %li
+              = link_to "基本ルール", play_rule_introductions_path
+            %li
+              = link_to "カードの役割", play_card_introductions_path
+            %li
+              = link_to "ゲーム画面説明", play_gamen_introductions_path
+            %li
+              = link_to "操作説明", play_operation_introductions_path
+            %li
+              = link_to "アバター編集", play_avatar_introductions_path
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+      .footer
+        © 2019 Shota Tazawa

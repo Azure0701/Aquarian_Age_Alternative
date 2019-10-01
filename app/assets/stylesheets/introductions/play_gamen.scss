@@ -1,0 +1,82 @@
+#mainR {
+  #mainRAaaGamen {
+    width: 100%;
+    border: solid 5px #fff;
+    color: #FFF;
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  dl {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+
+    dt {
+      font-weight: bold;
+      color: #FFF37F;
+      background-image: url("introduction/main_titlec.gif");
+      background-repeat: no-repeat;
+      background-position: left center;
+      padding: 5px 20px;
+      margin: 0px;
+    }
+
+    dd {
+      line-height: 140%;
+      margin: 5px 10px 5px 20px;
+      padding: 0px;
+    }
+  }
+
+  .partL {
+    width: 250px;
+    float: left;
+
+    table.info {
+      text-align: left;
+      border-collapse: collapse;
+      margin: 5px auto;
+      table-layout: fixed;
+
+      tbody {
+        display: table-row-group;
+        vertical-align: middle;
+        border-color: inherit;
+
+        tr {
+          display: table-row;
+          vertical-align: inherit;
+          border-color: inherit;
+
+          th {
+            border-right-color: #56A2C4;
+            color: #d2f5ff;
+            background-color: #045B84;
+            border: 1px #d2f5ff solid;
+            padding: 4px 8px;
+            display: table-cell;
+            vertical-align: inherit;
+            font-weight: bold;
+            text-align: -internal-center;
+
+            td {
+              background-color: #68A8C3;
+              border: 1px #d2f5ff solid;
+              padding: 4px 8px;
+              display: table-cell;
+              vertical-align: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .partR {
+    width: 250px;
+    float: left;
+  }
+}
