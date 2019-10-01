@@ -7,7 +7,7 @@
   .background-image {
     width: 100%;
     height: 800px;
-    background-image: url("wallpaper/body_back1.png");
+    background-image: image-url("/image/home/body_back1.png");
     background-repeat: repeat;
     overflow: auto;
     .main-content {
@@ -15,7 +15,7 @@
       &__image {
       height: 560px;
       width: 700px;
-      background-image: url("home/aaa-top.png");
+      background-image: image-url("/image/home/aaa-top.png");
       margin: 0 auto;
       position: relative;
         &__enter {
