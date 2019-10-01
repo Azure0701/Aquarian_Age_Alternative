@@ -1,0 +1,323 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render '/top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名:
+          %h3.user-name
+            #edit-show
+              = current_user.username
+            #edit-modal.edit-modal-wrapper
+              .modal
+                .close-modal
+                  %i.fa.fa-2x.fa-times
+                #edit-form
+                  %h2 ユーザー編集
+                  = form_for(current_user) do |f|
+                    %input{name: "_method", type: "hidden", value: "put"}/
+                    %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                    .field
+                      %label{for: "user_username"} Username
+                      %br/
+                      %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                    .field
+                      %label{for: "user_email"} Eメール
+                      %br/
+                      %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                    .field
+                      %label{for: "user_password"} パスワード
+                      %i (6 characters minimum)
+                      %br/
+                      %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                      %br/
+                    .field
+                      %label{for: "user_password_confirmation"} パスワード（確認用）
+                      %br/
+                      %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                    .actions
+                      %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        
+        %ul
+          %li
+            = link_to "ゲーム概要", summary_introductions_path
+          %li
+            = link_to "ストーリー", story_introductions_path
+          %li
+            = link_to "遊び方", play_introductions_path
+          %li
+            = link_to "プレイモード" ,root_path
+          %li
+            = link_to "プレイ上のポイント" ,root_path
+          %li
+            = link_to "カードリスト" ,root_path
+          %li
+            = link_to "ギャラリー" ,root_path
+      .main
+        #mainR
+          %a#top{name: "top"}
+          %h2#mainRAaaGamen ゲーム画面説明
+          %ul.menuS
+            %li
+              = link_to "ゲーム概要", summary_introductions_path
+            %li
+              = link_to "遊び方", play_introductions_path
+            %li
+              ゲーム画面説明
+          #hlink
+            %ul
+              %li
+                %a{href: "#screen"} 各表示の意味
+              %li
+                %a{href: "#energy"} エナジーゲージについて
+              %li
+                %a{href: "#icon"}> 状態異常アイコンについて
+                （2007年12月25日更新）
+              %li
+                %a{href: "#playscreen"} プレイスクリーン
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+          %h3
+            %a#screen{name: "screen"}>
+            各表示の意味
+          = image_tag "introduction/aaa_gamen.jpg", alt: "ゲーム画面", height: "345", width: "460", class: "pict"
+          %br
+          %dl
+            %dt 1、キャラクター
+            %dd プレイヤーの分身であるマインドブレイカーや、ブレイクされたキャラクターが画面内に表示されます。
+            %dt 2、残り時間
+            %dd バトルの残り時間を表示します。0になった時点でラウンドが終了します。
+            %dt 3、勝利ラウンド表示
+            %dd ゲームは3ラウンド制です。2ラウンド先取したプレイヤーが勝利します。
+            %dt 4、マインドブレイカーHPゲージ
+            %dd 互いのマインドブレイカーの残りのHPを表示します。相手を0にするとラウンド勝利です。
+            %dt 5、エナジーゲージ
+            %dd プレイヤーが使用可能なエナジー量を表示します。
+            %dt 6、バトルセンスゲージ / センス参加人数表示
+            %dd バトルセンス発動に必要なエナジー量を表示します。ゲージの上部には、バトルセンスに加わるキャラ数を表示します。
+            %dt 7、登録したカード
+            %dd
+              登録カードの状態を表示します。
+              %br
+              = image_tag "introduction/aaa_card_status.jpg", alt: "登録カードの状態表示", height: "137", width: "460", class: "pict"
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#energy{name: "energy"}>
+            エナジーゲージについて
+          %p
+            = image_tag "introduction/aaa_gamen_energy.jpg", alt: "エナジー量", height: "150", width: "200", class: "pictR"
+            マインドブレイカーがキャラクターをブレイクするにはエナジーを消費します。
+            %br
+            エナジーは次の行為によって生成されます。
+            %br.clear
+          %h4 1、時間経過による生成
+          %p 時間が経過することで、すべてのエナジーゲージにエナジーが溜まっていきます。
+          %h4 2、キャラクター同士の戦闘により生成
+          %p キャラクター同士がぶつかり合うと、そのキャラクターの所属する勢力のエナジーが生成されます。
+          %h4 3、マインドブレイカーをとどめることによる生成
+          %p マインドブレイカーカードを動かさずにいると、全てのエナジーゲージにエナジーが溜まります。
+          %h5 使用勢力の数とエナジーの溜まり方の関係
+          %p
+            キャラクターをブレイクするには同色（同じ勢力）のエナジーが必要になります。
+            %br.clear
+            マインドブレイカーが生み出すエナジーは使用している勢力のエナジーゲージに均等に溜まります。
+            %br
+            ただし、生み出されるエナジー量は常に一定なので、使用している勢力の種類が多いとそれぞれが得られる量は分散してしまいます。
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#icon{name: "icon"}>
+            状態異常アイコンについて
+          %p
+            = image_tag "introduction/status_down.jpg", alt: "状態異常", class: "pictL"
+            スキルやオルタレーションカードの効果で、一時的に状態異常に陥る事があります。
+          %p
+            その場合、敵や味方、マインドブレイカーやキャラクターを問わず、その状態がアイコンで表示されます。
+            %br.clear
+          %h4 状態異常アイコンの種類
+          .partL
+            %table.info{cellspacing: "0", summary: "状態異常アイコンの種類1"}
+              %tbody
+                %tr
+                  %th.sizeM{scope: "row"} スキル使用不可
+                  %td
+                    = image_tag "introduction/sicon14.gif", alt: "スキル使用不可", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} ダッシュ使用不可
+                  %td
+                    = image_tag "introduction/sicon09.gif", alt: "ダッシュ使用不可", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} ダッシュ速度低下
+                  %td
+                    = image_tag "introduction/sicon10.gif", alt: "ダッシュ速度低下", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} ダッシュ距離延長
+                  %td
+                    = image_tag "introduction/sicon11.gif", alt: "ダッシュ距離延長", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 通常攻撃不可
+                  %td
+                    = image_tag "introduction/sicon04.gif", alt: "通常攻撃不可", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 操作不可
+                  %td
+                    = image_tag "introduction/sicon13.gif", alt: "操作不可", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 攻撃力上昇
+                  %td
+                    = image_tag "introduction/sicon07.gif", alt: "攻撃力上昇", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 攻撃力低下
+                  %td
+                    = image_tag "introduction/sicon05.gif", alt: "攻撃力低下", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} パワー一定
+                  %td
+                    = image_tag "introduction/sicon06.gif", alt: "パワー一定", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 通常移動不可
+                  %td
+                    = image_tag "introduction/sicon01.gif", alt: "通常移動不可", height: "32", width: "32"
+                %tr
+                  %th.sizeM{scope: "row"} ダメージ反射
+                  %td
+                    = image_tag "introduction/sicon16.gif", alt: "ダメージ反射", height: "32", width: "32"
+                %tr
+                  %th.sizeM{scope: "row"} 通常移動速度低下
+                  %td
+                    = image_tag "introduction/sicon02.gif", alt: "通常移動速度低下", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 通常移動速度上昇
+                  %td
+                    = image_tag "introduction/sicon03.gif", alt: "通常移動速度上昇", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 最大HP低下
+                  %td
+                    = image_tag "introduction/sicon12.gif", alt: "最大HP低下", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} ダメージ軽減
+                  %td
+                    = image_tag "introduction/sicon15.gif", alt: "ダメージ軽減", height: "32", width: "32"
+                %tr
+                  %th.sizeM{scope: "row"} 吸着
+                  %td
+                    = image_tag "introduction/sicon17.gif", alt: "吸着", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 引き寄せ
+                  %td
+                    = image_tag "introduction/sicon18.gif", alt: "引き寄せ", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 被害エナジー上昇なし
+                  %td
+                    = image_tag "introduction/sicon19.gif", alt: "被害エナジー上昇なし", height: "32", width: "32"
+          .partR
+            %table.info{cellspacing: "0", summary: "状態異常アイコンの種類2"}
+              %tbody
+                %tr
+                  %th{scope: "row"} 移動方向反転
+                  %td
+                    = image_tag "introduction/sicon20.gif", alt: "移動方向反転", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} ダメージ量増量
+                  %td
+                    = image_tag "introduction/sicon21.gif", alt: "MBダメージ量増量", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 通常攻撃範囲拡大
+                  %td
+                    = image_tag "introduction/sicon08.gif", alt: "通常攻撃範囲拡大", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} HP自動回復
+                  %td
+                    = image_tag "introduction/sicon22.gif", alt: "HP自動回復", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} ダメージ仕返し
+                  %td
+                    = image_tag "introduction/sicon24.gif", alt: "ダメージ仕返し", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} ダメージ吸収
+                  %td
+                    = image_tag "introduction/sicon26.gif", alt: "ダメージ吸収", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} スキル上昇
+                  %td
+                    = image_tag "introduction/sicon27.gif", alt: "スキル上昇", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 毒
+                  %td
+                    = image_tag "introduction/sicon31.gif", alt: "毒", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 睡眠
+                  %td
+                    = image_tag "introduction/sicon32.gif", alt: "睡眠", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 戦闘不能状態延長
+                  %td
+                    = image_tag "introduction/sicon34.gif", alt: "戦闘不能状態延長", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} ブレイク制限
+                  %td
+                    = image_tag "introduction/sicon35.gif", alt: "ブレイク制限", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 状態異常無敵
+                  %td
+                    = image_tag "introduction/sicon36.gif", alt: "状態異常無敵", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} ダメージ交換
+                  %td
+                    = image_tag "introduction/sicon25.gif", alt: "ダメージを交換する", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 被ダメージ軽減不可
+                  %td
+                    = image_tag "introduction/sicon28.gif", alt: "被ダメージ軽減出来ない", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} エナジー上昇
+                  %td
+                    = image_tag "introduction/sicon29.gif", alt: "エナジー上昇", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 最大エナジー減少
+                  %td
+                    = image_tag "introduction/sicon30.gif", alt: "最大エナジー減少", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} 麻痺
+                  %td
+                    = image_tag "introduction/sicon33.gif", alt: "麻痺", height: "32", width: "32"
+                %tr
+                  %th{scope: "row"} ステルス
+                  %td
+                    = image_tag "introduction/sicon39.gif", alt: "能力反転", height: "32", width: "32"
+          %hr
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#playscreen{name: "playscreen"}>
+            プレイスクリーン
+          %p
+            = image_tag "introduction/aaa_gamen_play.jpg", alt: "プレイスクリーン",  height: "150", width: "200", class: "pictL"
+            手元のプレイスクリーンには、全体マップが映し出され、自分や相手キャラクターの位置が表示されます。
+            %br.clear
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %ul.menuS
+            %li
+              = link_to "はじめに", play_introductions_path
+            %li
+              = link_to "基本ルール", play_rule_introductions_path
+            %li
+              = link_to "カードの役割", play_card_introductions_path
+            %li
+              ゲーム画面説明
+            %li
+              = link_to "操作説明", play_operation_introductions_path
+            %li
+              = link_to "アバター編集", play_avatar_introductions_path
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+      .footer
+        © 2019 Shota Tazawa

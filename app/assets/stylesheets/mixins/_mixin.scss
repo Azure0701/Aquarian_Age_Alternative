@@ -8,7 +8,7 @@
 }
 
 @mixin wrapper {
-  background-image: url("body_back3.png");
+  background-image: url("wallpaper/body_back3.png");
   background-repeat: repeat-x;  
   background-position: right top;
   height: 100%;
@@ -16,7 +16,7 @@
 }
 
 @mixin body-wrap {
-    background-image: url("body_back2.gif");
+    background-image: url("wallpaper/body_back2.gif");
     background-repeat: no-repeat;  
     background-position: right top;
 }

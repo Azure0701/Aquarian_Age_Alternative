@@ -1,0 +1,154 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render '/top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名:
+          %h3.user-name
+            #edit-show
+              = current_user.username
+            #edit-modal.edit-modal-wrapper
+              .modal
+                .close-modal
+                  %i.fa.fa-2x.fa-times
+                #edit-form
+                  %h2 ユーザー編集
+                  = form_for(current_user) do |f|
+                    %input{name: "_method", type: "hidden", value: "put"}/
+                    %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                    .field
+                      %label{for: "user_username"} Username
+                      %br/
+                      %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                    .field
+                      %label{for: "user_email"} Eメール
+                      %br/
+                      %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                    .field
+                      %label{for: "user_password"} パスワード
+                      %i (6 characters minimum)
+                      %br/
+                      %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                      %br/
+                    .field
+                      %label{for: "user_password_confirmation"} パスワード（確認用）
+                      %br/
+                      %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                    .actions
+                      %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        
+        %ul
+          %li
+            = link_to "ゲーム概要", summary_introductions_path
+          %li
+            = link_to "ストーリー", story_introductions_path
+          %li
+            = link_to "遊び方", play_introductions_path
+          %li
+            = link_to "プレイモード" ,mode_introductions_path
+          %li
+            = link_to "プレイ上のポイント" ,point_introductions_path
+          %li
+            = link_to "カードリスト" ,root_path
+          %li
+            = link_to "ギャラリー" ,root_path
+
+      .main
+        #mainR
+          #pointBody
+          %a#top{name: "top"}
+          %h2#mainRAaaTechnique テクニック編
+          %ul.menuS
+            %li
+              = link_to "ゲーム概要", summary_introductions_path
+            %li
+              = link_to "プレイ上のポイント", point_introductions_path
+            %li
+              テクニック編
+          %h3
+            %a#screen{name: "screen"}>
+            テクニックの基本をマスターせよ！
+          %h4 １、カードの当たり判定と向き
+          %p
+            = image_tag "introduction/point_4_01.gif", alt: "カードの当たり判定と向き", height: "130", width: "200", class: "pictL"
+            カードの当たり判定は
+            %em> カード上部中央
+            に有ります。
+            %br
+            直接攻撃を仕掛ける際には、
+            %em> カードの向きと攻撃可能範囲
+            にも注意しましょう。
+          %hr
+          %p
+            = image_tag "introduction/point_4_02.gif", alt: "解説図", height: "130", width: "200", class: "pictL"
+            カードを重ねただけでは直接攻撃はできません。
+            %br
+            カードの向きを変えて
+            %em 相手を攻撃範囲内におさめましょう。
+          %hr
+          %h4 2、バックアタックで背後から襲え！
+          = image_tag "introduction/point_4_03.jpg", alt: "バックアタック！", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %p
+              相手の背後から直接攻撃を仕掛けると
+              %em> 「バックアタック」
+              となり、通常より多くのダメージを与えることができます。
+          %hr
+          %h4 3、スキルを潰せ！
+          = image_tag "introduction/point_4_04.jpg", alt: "スキルをキャンセル！", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %p
+              相手キャラクターのスキルの発動準備中にダメージを与えることによって、その
+              %em> スキルの発動を中断
+              させることができます。
+              %br
+              厄介なスキルは発動前に潰してしまいましょう。
+          %hr
+          %h4 4、スピードアップ！
+          = image_tag "introduction/point_4_05.jpg", alt: "スピードアップ！", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %p
+              一定距離を移動し続けると
+              %em キャラクターの移動速度が上がります。
+          %hr
+          %h4 5、ブレイクする場所を考えよう！
+          = image_tag "introduction/point_4_06.gif", alt: "ブレイクする場所を考えよう！", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %p
+              キャラクターは、キャラクターカードを置いた任意の場所にブレイクすることができます。
+              %br
+              ただし、ブレイクするまでの時間は
+              %em> マインドブレイカーからの距離
+              に比例します。
+          %hr
+          = image_tag "introduction/point_4_07.gif", alt: "スピードの遅いキャラ", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %p スピードの遅いキャラの場合、目的地に直接ブレイクしたほうが早く目的地に到達できます。
+          %hr
+          = image_tag "introduction/point_4_08.gif", alt: "スピードの速いキャラ", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %p スピードの速いキャラの場合、目的地に直接ブレイクするよりも、マインドブレイカーの近くにブレイクしてから移動させた方が早く目的地に到達できます。
+          %hr
+          %ul.menuS
+            %li
+              %a{href: "point_1skill.html"} スキル編
+            %li
+              %a{href: "point_2alteration.html"} オルタレーション編
+            %li
+              %a{href: "point_3battlesense.html"} バトルセンス編
+            %li テクニック編
+            %li
+              %a{href: "point_5deckmake.html"} 戦術＆デッキメイク編
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+      .footer
+        © 2019 Shota Tazawa

@@ -1,0 +1,231 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render '/top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名:
+          %h3.user-name
+            #edit-show
+              = current_user.username
+            #edit-modal.edit-modal-wrapper
+              .modal
+                .close-modal
+                  %i.fa.fa-2x.fa-times
+                #edit-form
+                  %h2 ユーザー編集
+                  = form_for(current_user) do |f|
+                    %input{name: "_method", type: "hidden", value: "put"}/
+                    %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                    .field
+                      %label{for: "user_username"} Username
+                      %br/
+                      %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                    .field
+                      %label{for: "user_email"} Eメール
+                      %br/
+                      %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                    .field
+                      %label{for: "user_password"} パスワード
+                      %i (6 characters minimum)
+                      %br/
+                      %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                      %br/
+                    .field
+                      %label{for: "user_password_confirmation"} パスワード（確認用）
+                      %br/
+                      %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                    .actions
+                      %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        
+        %ul
+          %li
+            = link_to "ゲーム概要", summary_introductions_path
+          %li
+            = link_to "ストーリー", story_introductions_path
+          %li
+            = link_to "遊び方", play_introductions_path
+          %li
+            = link_to "プレイモード" ,mode_introductions_path
+          %li
+            = link_to "プレイ上のポイント" ,point_introductions_path
+          %li
+            = link_to "カードリスト" ,root_path
+          %li
+            = link_to "ギャラリー" ,root_path
+
+      .main
+        #mainR
+          %a#top{name: "top"}
+          %h2#mainRAaaMode プレイモード
+          %ul.menuS
+            %li
+              %a{href: "index.html"} ゲーム概要
+            %li プレイモード
+          %h3 ゲームモードは5種類
+          %p{style: "font-weight: bold; color: #000;"} ※ネットワークサービスは、2011年2月28日（月曜日） 午前6時00分を持ちまして終了いたしました。「全国対戦」「アクエリアンテイル」「フレンド対戦」はプレイできません。
+          %p
+            = image_tag "introduction/aaa_mode_select.jpg", alt: "モードセレクト", class: "pictL"
+            2007年6月7日より、アクエリアンエイジの世界に浸れる
+            %a{href: "#tales"}> 新モード「アクエリアンテイル」
+            が加わり、全5モードになりました。
+          %p 目的に合ったゲームモードを選択して、お楽しみ下さい！
+          %p
+            %span.j10 ※イベントモードが選択出来る時は全6種類となります。
+            %br.clear
+          #hlink
+            %ul
+              %li
+                %a{href: "#mode"}> ゲームモードの種類
+                （2007年6月1日更新）
+              %li
+                %a{href: "#aboutEvent"} イベントプレイについて
+          %h3
+            %a#mode{name: "mode"}>
+            ゲームモードの種類
+          %h4
+            %a#zenkoku{name: "zenkoku"}>
+            全国対戦
+          %p{style: "font-weight: bold; color: #000;"} ※ネットワークサービスは、2011年2月28日（月曜日） 午前6時00分を持ちまして終了いたしました。全国対戦は選択できません。
+          %p
+            = image_tag "introduction/aaa_mode_zenkoku.jpg", alt: "全国対戦", class: "pictR"
+            NESYSでつながれた全国のプレイヤーと、リアルタイムで対戦します。
+          %p 対戦相手のマッチングは、同ランクのプレイヤーとなります。
+          %p
+            対戦相手が見つからない場合はNPC（コンピュータ）との対戦になりますが、
+            プレイ中にマッチング相手があらわれた場合は、全国対戦モードに切り替わります。
+            %br.clear
+          %h4
+            %a#tennai{name: "tennai"}>
+            店内対戦
+          %p
+            = image_tag "introduction/aaa_mode_tennai.jpg", alt: "店内対戦", class: "pictL"
+            %em 店内のプレイヤーと対戦します。
+          %p
+            対戦相手が見つからない場合はNPCとの対戦になりますが、
+            プレイ中にマッチング相手があらわれた場合は、店内対戦モードに切り替わります。
+            %br.clear
+          %h4
+            %a#tutorial{name: "tutorial"}>
+            チュートリアルプレイ
+          %p
+            = image_tag "introduction/aaa_mode_tutorial.jpg", alt: "チュートリアル", height: "150",  width: "200", class: "pictR"
+            %em ルールやカードについての説明を受けながらゲームプレイを行います。
+          %p 1人プレイ専用で、対戦相手はNPCになります。
+          %p
+            アクエリアンエイジ　オルタナティブを初めてプレイする方におすすめです。
+            %br.clear
+          %h4
+            %a#tales{name: "tales"}>
+            アクエリアンテイル
+          %p{style: "font-weight: bold; color: #000;"} ※ネットワークサービスは、2011年2月28日（月曜日） 午前6時00分を持ちまして終了いたしました。アクエリアンテイルは選択できません。
+          %p
+            = image_tag "introduction/aaa_mode_tales01.jpg", alt: "ストーリー選択", height: "150",  width: "200", class: "pictL"
+            %br
+            %em アクエリアンエイジの世界で繰り広げられる、ストーリーを体験できます。
+          %p
+            1人プレイ専用です。勢力別に用意された、6つのストーリーから選択してプレイします。
+            %br.clear
+          %p
+            = image_tag "introduction/aaa_mode_tales04.jpg", alt: "イベント発生", height: "150",  width: "200", class: "pictL"
+            = image_tag "introduction/aaa_mode_tales05.jpg", alt: "追加効果", height: "150",  width: "200", class: "pictR"
+            %br.clear
+          %h5 「クローズアップカード」と「デンジャラスカード」
+          %p
+            ストーリー選択時に表示される「クローズアップカード」と「デンジャラスカード」は、戦況を大きく左右します。
+            %br
+            「クローズアップカード」を登録し、特定条件を満たすと、「イベント」が発生 します。
+            イベント発生時は、エナジー上昇、スピード上昇といった、通常のプレイでは見る事のできない、「追加効果」がもたらさ れます。
+            %br
+            逆に「デンジャラスカード」は敵へパワーアップを与えてしまう可能性がある為、注意が必要です。
+          %h5 イベントを開放せよ！
+          %p 各ストーリーにはイベントが複数隠されています。発生条件を探して、全イベント開放を目指しましょう！
+          %h5 高ランククリアを目指せ！
+          %p
+            = image_tag "introduction/aaa_mode_tales06.jpg", alt: "結果発表", height: "150",  width: "200", class: "pictR"            
+            ストーリーをクリアする毎に「クリアランク」が与えられ、この評価に応じて「ストーリーポイント」と「カスタムポイント」が獲得できます。
+          %p 戦績やストーリーの進展状況は、自動的に記録されます。
+          %p
+            より高いランクを目指して、同じストーリーで何度でも挑戦が可能です。
+            %br.clear
+          %h4
+            %a#single{name: "single"}>
+            シングルプレイ
+          %p
+            %em NPCとの対戦を行います。
+            %br
+            カードさばきの練習をしたい場合や、キャラクターの特性をつかみたい場合は、このモードがおすすめです。
+          %p
+            = image_tag "introduction/aaa_mode_single2.jpg", alt: "クラス選択", height: "150", width: "200", class: "pictR"
+            難易度は低い順から「リーダークラス」「ヴァンガードクラス」「マスタークラス」「オーバーロードクラス」「ガバナークラス」の5ランクがあり、
+            さらに対戦相手のタイプを「ランダム」「スピード」「シュート」「パワー」から選択することが出来ます。
+            （選択したタイプによって相手デッキの特性が変わります）。
+            %br.clear
+          %h4
+            %a#event{name: "event"}>
+            イベントプレイ
+          %p{style: "font-weight: bold; color: #000;"} ※ネットワークサービスは、2011年2月28日（月曜日） 午前6時00分を持ちまして終了いたしました。イベントプレイは選択できません。
+          %p
+            期間限定でオンラインイベントが開催される事があります。詳しくは
+            %a{href: "#aboutEvent"}> イベントプレイについて
+            をご覧下さい。
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#aboutEvent{name: "aboutEvent"}>
+            イベントプレイについて
+          %p{style: "font-weight: bold; color: #000;"} ※ネットワークサービスは、2011年2月28日（月曜日） 午前6時00分を持ちまして終了いたしました。イベントプレイは選択できません。
+          %h4 イベントプレイとは？
+          %ul
+            %li 参加条件が設けられた、期間限定のプレイモードです。どなたでも参加できますが、その回毎の限定ルールに従っていただきます。
+            %li イベントプレイのランキングは、通常のランキングとは別ランキングとなります。
+            %li 結果は、イベント終了後に、このサイトとメインユニットで発表となります。
+          %p 特典として、順位に応じたカスタムポイントがプレゼントされます。是非ご参加下さい！
+          %h4 参加方法
+          %h5 1、モード選択
+          %p
+            = image_tag "introduction/aaa_mode_event.jpg", alt: "イベントモードを選択", class: "pictL"            
+            イベントプレイの開催期間は、モード選択画面に期間限定メニューが現れます。
+            %br
+            図は「カード総数5枚以下限定戦」が開催された時の例です。
+          %p
+            %em ※開催期間以外はモード選択に現れません。
+            %br.clear
+          %h5 2、レギュレーション確認
+          %p
+            = image_tag "introduction/aaa_mode_event2.jpg", alt: "レギュレーション確認", height: "150", width: "200", class: "pictL"
+            期間限定メニューを選択すると、レギュレーションが表示されます。内容をご確認下さい。
+            %br.clear
+          %h5 3、決定
+          %p
+            = image_tag "introduction/aaa_mode_event3.jpg", alt: "参加確認画面", class: "pictL"
+            決定ボタンを押すと、「このイベントに参加しますか？」という意思確認表示になります。
+          %p
+            参加する場合は
+            %em 「決定」
+            %br
+            %em 「キャンセル」
+            %br.clear
+          %h5 4、カード登録
+          %p
+            = image_tag "introduction/aaa_mode_event4.jpg", alt: "イベントモードを選択", height: "150", width: "200", class: "pictL"
+            通常のゲームと同様に、カード登録を行います。
+          %p
+            レギュレーションに合わないデッキを登録しようとすると、「登録条件に違反しています」と表示され、カード登録できません。
+            %br
+            「カード総数5枚以下限定戦」の場合、6枚以上の登録を行えません。
+            %br.clear
+          %h5 5、ゲーム開始
+          %p 通常のモードと同様に、マッチングした相手マインドブレイカーを倒して下さい！
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+      .footer
+        © 2019 Shota Tazawa

@@ -1,0 +1,229 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render '/top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名:
+          %h3.user-name
+            #edit-show
+              = current_user.username
+            #edit-modal.edit-modal-wrapper
+              .modal
+                .close-modal
+                  %i.fa.fa-2x.fa-times
+                #edit-form
+                  %h2 ユーザー編集
+                  = form_for(current_user) do |f|
+                    %input{name: "_method", type: "hidden", value: "put"}/
+                    %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                    .field
+                      %label{for: "user_username"} Username
+                      %br/
+                      %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                    .field
+                      %label{for: "user_email"} Eメール
+                      %br/
+                      %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                    .field
+                      %label{for: "user_password"} パスワード
+                      %i (6 characters minimum)
+                      %br/
+                      %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                      %br/
+                    .field
+                      %label{for: "user_password_confirmation"} パスワード（確認用）
+                      %br/
+                      %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                    .actions
+                      %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        
+        %ul
+          %li
+            = link_to "ゲーム概要", summary_introductions_path
+          %li
+            = link_to "ストーリー", story_introductions_path
+          %li
+            = link_to "遊び方", play_introductions_path
+          %li
+            = link_to "プレイモード" ,root_path
+          %li
+            = link_to "プレイ上のポイント" ,root_path
+          %li
+            = link_to "カードリスト" ,root_path
+          %li
+            = link_to "ギャラリー" ,root_path
+
+      .main
+        #mainR
+          %a#top{name: "top"}
+          %h2#mainRAaaYakuwari カードの役割
+          %ul.menuS
+            %li
+              = link_to "ゲーム概要", summary_introductions_path
+            %li
+              = link_to "遊び方", play_introductions_path
+            %li カードの役割
+          #hlink
+            %ul
+              %li
+                %a{href: "#card"} カードの種類
+              %li
+                %a{href: "#skill"} 多彩なスキルを使いこなせ！
+              %li
+                %a{href: "#sense"} バトルセンスで決めろ！
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+          %h3
+            %a#card{name: "card"}>
+            カードの種類
+          %h4 マインドブレイカーカード
+          %p
+            = image_tag "introduction/aaa_yakuwari_mind.jpg", alt: "マインドブレイカーカード", height: "150", width: "200", class: "pictR"
+            プレイスクリーン上で動かすと、
+            %em> マインドブレイカー（プレイヤー自身）
+            を操作する事ができます。
+            %br
+            プレイスクリーン上に静止させる事で、「全勢力で使用可能なエナジー」を生成します。
+            %br.clear
+          %h4 キャラクターカード
+          %p
+            %em> ブレイクし、操作するキャラクターのカード
+            です。
+            %a{href: "asobi_rule.html#turn"}> カードを裏返す
+            ことで「スキル」を発動します。
+          .flortL
+            %ol
+              %li キャラクターの名前
+              %li キャラクターの移動スピード
+              %li ブレイクに必要なエナジーの量
+              %li キャラクター同士が接触した際に相手に与えるダメージ値
+              %li スキル効果についての説明
+              %li スキル効果範囲の図解
+              %li キャラクターのプロフィール
+              %li キャラクターからの挨拶
+              %li 属する勢力のシンボルマーク
+          %p
+            = image_tag "introduction/aaa_yakuwari_chara.jpg", alt: "キャラクターカード", height: "260", width: "200", class: "pictR"
+          %hr
+          %h4 オルタレーションカード
+          %p
+            1バトルにつき1回のみ使用可能で、
+            %em> 強力な魔法効果をもたらすカード
+            です。
+            %br
+            プレイスクリーンに置くとエナジーを消費して効果を発揮します。裏返しても同じ効果を2度発揮することはありません。
+          .flortL
+            %ol
+              %li オルタレーションの名称
+              %li 発動に必要なエナジーの量
+              %li 魔法効果についての説明
+              %li 魔法効果の範囲の図解
+          %p
+            = image_tag "introduction/aaa_yakuwari_alta.jpg", alt: "オルタレーションカード", height: "260", width: "200", class: "pictR"
+          %hr
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#skill{name: "skill"}>
+            多彩なスキルを使いこなせ！
+          %p すべてのキャラクターカードには、そのキャラクターが持ってるスキルが設定されています。カードを裏返すことでスキルを発動できます。
+          %h4 スキルの一例
+          %h5 直接ダメージをやりとりするタイプ
+          %ul
+            %li 目標にダメージを与える
+            %li 範囲内の相手全員にダメージを与える
+          %h5 戦闘をサポートするタイプ
+          %ul
+            %li 相手から見えなくなる
+            %li 相手のスキルを打ち消すエリアを作る
+          %p
+            この他にも多種多様なスキルが設定されています。
+            %br
+            さらにスキルを組み合わせることによって思いもよらない効果がもたらされることがあります。
+          %h4 スキルの効果範囲を知ろう
+          %p
+            スキルには効果範囲が設定されています。スキルは目標に正確に当ててこそ効果があります。
+            カードさばきを練習して、正確にスキルを発動できるようになれば、勝利は目前です！
+          %h5 効果範囲の例
+          %p
+            %font{color: "#FF6600"}> ▲
+            …スキルを使用するプレイヤーキャラクター　　
+            %font{color: "#339900"}> ■
+            …他キャラクター
+            %br
+              %font{color: "#FFCC00"}> ●
+              …スキルの効果範囲
+          = image_tag "introduction/aaa_yakuwari_skill.jpg", alt: "スキルの効果範囲", height: "160", width: "460", class: "pict"
+          %br
+          %h4 組み合わせによるコンビネーション
+          %p
+            スキルは、別のスキルと組み合わせると強烈なコンビネーションが生まれることがあります。
+            %br
+            アクエリアンエイジのキャラクターには、すべて異なるスキルが設定されています。様々な組み合わせを試し、自分だけのコンビネーションを見つけ出しましょう。
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %h3
+            %a#sense{name: "sense"}>
+            バトルセンスで決めろ！
+          %p
+            「スキル」が必殺技なら、「バトルセンス」は超必殺技です。特定条件下で「バトルセンス発動ボタン（キャンセルボタン）」を押すと、
+            超強力な「バトルセンス」を発動させることが可能です。
+            %br
+            ただし、発動にはエナジーを大量に消費するので、ここぞという場面で使うのがコツです。バトルセンスは全部で3種類あります。
+            バトルセンスは、同時に参加するキャラクターが多いほど、効果が高まります。
+          %h5 バトルセンス陣形図
+          %p
+            %font{color: "#339900"}>
+              %em MB
+            …プレイヤーのマインドブレイカー　　
+            %font{color: "#339900"}>
+              %em △
+            …移動前のプレイヤーキャラクター
+            %br
+            %font{color: "#339900"}> ▲
+            …プレイヤーキャラクター　　
+            %font{color: "#FF6600"}> ▲
+            …対戦相手のキャラクター
+          = image_tag "introduction/aaa_yakuwari_battle.jpg", alt: "バトルセンス", height: "160", width: "460", class: "pict"
+          %br
+          %h4 アタックセンス　【ダメージ★★★】【難易度★★★】
+          %p
+            マインドブレイカーを前方に「アタックオーラ」を発生して突進！
+            %br
+            オーラに触れたキャラクターに大ダメージを与えます。
+          %h4 トラップセンス　【ダメージ★★】【難易度★★】
+          %p
+            マインドブレイカーとキャラクターの間に「トラップライン」を発生！
+            %br/
+            ラインに触れたキャラクターに大ダメージを与えます。
+          %h4 シューティングセンス　【ダメージ★】【難易度★】
+          %p
+            マインドブレイカーとキャラクターの前方に「シューティングエナジー」を発射！
+            %br/
+            射線上のキャラクターに大ダメージを与えます。
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          %ul.menuS
+            %li
+              = link_to "はじめに", play_introductions_path
+            %li
+              = link_to "基本ルール", play_rule_introductions_path
+            %li
+              カードの役割
+            %li
+              = link_to "ゲーム画面説明", play_gamen_introductions_path
+            %li
+              = link_to "操作説明", play_operation_introductions_path
+            %li
+              = link_to "アバター編集", play_avatar_introductions_path
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+      .footer
+        © 2019 Shota Tazawa

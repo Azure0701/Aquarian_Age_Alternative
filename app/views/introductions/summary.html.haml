@@ -2,7 +2,7 @@
   .body-wrap
     .base
       .header
-        = link_to image_tag("head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
       = render '/top/header_menu'
       .nav
         - if user_signed_in?
@@ -50,11 +50,11 @@
           %li
             = link_to "ストーリー", story_introductions_path
           %li
-            = link_to "遊び方", root_path
+            = link_to "遊び方", play_introductions_path
           %li
-            = link_to "プレイモード" ,root_path
+            = link_to "プレイモード" ,mode_introductions_path
           %li
-            = link_to "プレイ上のポイント" ,root_path
+            = link_to "プレイ上のポイント" ,point_introductions_path
           %li
             = link_to "カードリスト" ,root_path
           %li
@@ -73,7 +73,7 @@
             です。純国産TCGとしては最も歴史があり、アクティブなプレイヤー数は10万人を数え、カード発行枚数も2005年1月に1億枚を突破するなど高い人気を誇っています。
           %h4 TCGの興奮をアーケードに。アクエリアンエイジ・オルタナティブ登場！
           %p
-            = image_tag "aaa_whats_cabi.jpg", width: "250", height: "188", alt: "アクエリアンエイジ　オルタナティブ", class: "pictL"
+            = image_tag "introduction/aaa_whats_cabi.jpg", width: "250", height: "188", alt: "アクエリアンエイジ　オルタナティブ", class: "pictL"
             %em> アクエリアンエイジ オルタナティブ
             は、アクエリアンエイジの世界での闘いを、全く新しいゲームシステムで表現したアーケードゲームです。
           %p
@@ -90,7 +90,7 @@
           %h2#mainRAaaTokucho アクエリアンエイジ オルタナティブの特徴
           %h3 フィールドを駆け巡る、攻防一体のリアルタイムバトル
           %p
-            = image_tag "aaa_asobi_gamen.jpg", width: "200", height: "150", alt: "ゲーム画面", class: "pictL"
+            = image_tag "introduction/aaa_asobi_gamen.jpg", width: "200", height: "150", alt: "ゲーム画面", class: "pictL"
             キャラクターカードを置いて
             %em> ブレイク！
           %p
@@ -101,7 +101,7 @@
           %h3
             %em カードゲームの興奮が体感できる、新感覚筐体
           %p
-            = image_tag "aaa_whats_cabi_zoom.jpg", width: "200", height: "150", alt: "サテライト拡大図", class: "pictL"
+            = image_tag "introduction/aaa_whats_cabi_zoom.jpg", width: "200", height: "150", alt: "サテライト拡大図", class: "pictL"
             正面にと手元の2画面表示を採用しました。
           %p
             カードを置いて操作する、手元のプレイスクリーンにも映像が投影され、
@@ -110,7 +110,7 @@
             %br.clear
           %h3 多彩で魅力的なカード
           %p
-            = image_tag "aaa_asobi_card.jpg", width: "200", height: "150", alt: "カード", class: "pictR"
+            = image_tag "introduction/aaa_asobi_card.jpg", width: "200", height: "150", alt: "カード", class: "pictR"
             有名イラストレーターによって描かれた、
             %em> かわいくて個性的なキャラクターたち。
           %p
@@ -127,7 +127,7 @@
             %em> リアルタイムオンライン対戦
             を実現しました。
           %p さらにNESYSカードにデータを保存することで、プレイ成績の保存や、ランキングの参加、新要素の追加など、より幅広い遊びを提供します。
-          = image_tag "aaa_whats_nesys.jpg", width: "460", height: "280", alt: "NESYS", class: "pict"
+          = image_tag "introduction/aaa_whats_nesys.jpg", width: "460", height: "280", alt: "NESYS", class: "pict"
           %br
           %h4 専用NESYSカードに情報を記録
           %p{style: "font-weight: bold; color: #000;"}
@@ -135,7 +135,7 @@
             %br
             %br
           %p
-            = image_tag "aaa_whats_card.jpg", width: "200", height: "150", alt: "NESYSカード", class: "pictR"
+            = image_tag "introduction/aaa_whats_card.jpg", width: "200", height: "150", alt: "NESYSカード", class: "pictR"
             パック内のNESYSカードはプレイヤーの情報を記憶するための「アクエリアンエイジ　オルタナティブ」専用のNESYS対応カードです。
           %p
             カードは使用可能回数が設定されています。

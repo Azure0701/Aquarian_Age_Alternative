@@ -1,0 +1,142 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render '/top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名:
+          %h3.user-name
+            #edit-show
+              = current_user.username
+            #edit-modal.edit-modal-wrapper
+              .modal
+                .close-modal
+                  %i.fa.fa-2x.fa-times
+                #edit-form
+                  %h2 ユーザー編集
+                  = form_for(current_user) do |f|
+                    %input{name: "_method", type: "hidden", value: "put"}/
+                    %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                    .field
+                      %label{for: "user_username"} Username
+                      %br/
+                      %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                    .field
+                      %label{for: "user_email"} Eメール
+                      %br/
+                      %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                    .field
+                      %label{for: "user_password"} パスワード
+                      %i (6 characters minimum)
+                      %br/
+                      %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                      %br/
+                    .field
+                      %label{for: "user_password_confirmation"} パスワード（確認用）
+                      %br/
+                      %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                    .actions
+                      %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        
+        %ul
+          %li
+            = link_to "ゲーム概要", summary_introductions_path
+          %li
+            = link_to "ストーリー", story_introductions_path
+          %li
+            = link_to "遊び方", play_introductions_path
+          %li
+            = link_to "プレイモード" ,mode_introductions_path
+          %li
+            = link_to "プレイ上のポイント" ,point_introductions_path
+          %li
+            = link_to "カードリスト" ,root_path
+          %li
+            = link_to "ギャラリー" ,root_path
+
+      .main
+        #mainR
+          #pointBody
+          %a#top{name: "top"}
+          %h2#mainRAaaAlteration オルタレーション編
+          %ul.menuS
+            %li
+              = link_to "ゲーム概要", summary_introductions_path
+            %li
+              = link_to "プレイ上のポイント", point_introductions_path
+            %li
+              オルタレーション編
+          %h3
+            %a#screen{name: "screen"}>
+            オルタレーションの効果を覚えよう！
+          %ul
+            %li
+              オルタレーションカードは
+              %em> １バトル（全ラウンドを通して）につき１回のみ使用可能
+              です。
+            %li 効果が発動した後はカードをプレイスクリーンから外しましょう。
+          %p ここでは代表的なオルタレーションと、その使い方を紹介します。
+          %h4 １、全面型
+          = image_tag "introduction/point_2_01.jpg", alt: "全面型", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %dl
+              %dt
+                %a{href: "list_3wiz.html#card0043"} ソドムの罰
+              %dd 相手にダメージを与える。ダメージはバトルフィールドにブレイクされている味方キャラクターのパワーの合計で上下する。
+            %p カードを置いた場所に関係なくバトルフィールド全面に効果があります。
+          %hr
+          %h4 2、範囲型
+          = image_tag "introduction/point_2_02.jpg", alt: "範囲型", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %dl
+              %dt
+                %a{href: "list_5kyo.html#card0074"} 次元斬
+              %dd 一定時間、相手キャラクターを戦闘不能にする結界を張る。
+            %p カードを置いた場所を中心とした円形範囲に効果が有ります。
+          %hr
+          %h4 3、設置型
+          = image_tag "introduction/point_2_03.jpg", alt: "設置型", height: "214", width: "280", class: "pointPctL"
+          .flortRM
+            %dl
+              %dt
+                %a{href: "list_4drk.html#card0058"} ブレードデモン
+              %dd
+                [強化]味方キャラクターが接触すると、パワーが一定時間上昇する光弾を設置する。
+                %br
+                この光弾は一定時間で消滅する。
+            %p
+              カードを置いた場所に光弾を設置します。
+              %br
+              味方キャラクターがこの光弾に触れることでそのキャラクターがパワーアップします。
+          %hr
+          %h4 4、光線型
+          = image_tag "introduction/point_2_04.jpg", alt: "光線型", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %dl
+              %dt
+                %a{href: "list_3wiz.html#card0044"} ミストルティン
+              %dd 範囲内の相手にダメージを与える光線を放つ。
+            %p カードの向きに光線を発射します。また、発動準備中にカードの位置を変えると、変えた位置に向けて光線を発射します。
+          %hr
+          %ul.menuS
+            %li
+              %a{href: "point_1skill.html"} スキル編
+            %li オルタレーション編
+            %li
+              %a{href: "point_3battlesense.html"} バトルセンス編
+            %li
+              %a{href: "point_4technique.html"} テクニック編
+            %li
+              %a{href: "point_5deckmake.html"} 戦術＆デッキメイク編
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+      .footer
+        © 2019 Shota Tazawa

@@ -1,0 +1,131 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render '/top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名:
+          %h3.user-name
+            #edit-show
+              = current_user.username
+            #edit-modal.edit-modal-wrapper
+              .modal
+                .close-modal
+                  %i.fa.fa-2x.fa-times
+                #edit-form
+                  %h2 ユーザー編集
+                  = form_for(current_user) do |f|
+                    %input{name: "_method", type: "hidden", value: "put"}/
+                    %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                    .field
+                      %label{for: "user_username"} Username
+                      %br/
+                      %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                    .field
+                      %label{for: "user_email"} Eメール
+                      %br/
+                      %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                    .field
+                      %label{for: "user_password"} パスワード
+                      %i (6 characters minimum)
+                      %br/
+                      %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                      %br/
+                    .field
+                      %label{for: "user_password_confirmation"} パスワード（確認用）
+                      %br/
+                      %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                    .actions
+                      %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        
+        %ul
+          %li
+            = link_to "ゲーム概要", summary_introductions_path
+          %li
+            = link_to "ストーリー", story_introductions_path
+          %li
+            = link_to "遊び方", play_introductions_path
+          %li
+            = link_to "プレイモード" ,mode_introductions_path
+          %li
+            = link_to "プレイ上のポイント" ,point_introductions_path
+          %li
+            = link_to "カードリスト" ,root_path
+          %li
+            = link_to "ギャラリー" ,root_path
+
+      .main
+        #mainR
+          #pointBody
+          %a#top{name: "top"}
+          %h2#mainRAaaBattlesense バトルセンス編
+          %ul.menuS
+            %li
+              = link_to "ゲーム概要", summary_introductions_path
+            %li
+              = link_to "プレイ上のポイント", point_introductions_path
+            %li
+              バトルセンス編
+          %h3
+            %a#screen{name: "screen"}>
+            バトルセンス発動までの流れ
+          %p バトルセンスを発動させるには、以下のような手順が必要になります。
+          %h4 １、バトルセンスゲージをMAXにする！
+          = image_tag "introduction/point_3_01.jpg", alt: "バトルセンスゲージ", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %p
+              バトルセンスゲージには各色エナジーの合計が表示されます。エナジーを
+              %em> 合計10ポイント以上
+              溜めましょう。
+              %br
+              エナジーが溜まるとバトルセンス発動ボタンが点灯します。
+          %hr
+          %h4 2、マインドブレイカーの周りに味方を集めよう！
+          = image_tag "introduction/point_3_02.jpg", alt: "バトルセンスゲージ上部", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %p
+              集めた人数は
+              %em> バトルセンスゲージ上部
+              に表示されます。
+              %br
+              何人でバトルセンスを発動するかによって威力･効果範囲が変わります。
+          %hr
+          %h4 3、条件は整った！狙いを定めろ！
+          = image_tag "introduction/point_3_03.jpg", alt: "バトルセンスの効果範囲", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %p
+              発動条件を満たすと、バトルセンスゲージが光り、バトルセンス発動ボタンが点滅します。また、この時マインドブレイカーを操作すると、プレイスクリーン上に
+              %em> バトルセンスの効果範囲が表示
+              されます。
+              %br
+              “アタックセンス”と“シューティングセンス”はマインドブレイカーの向きに合わせて効果を発動します。
+              %br
+              標的に向けて狙いを定めましょう！
+          %hr
+          %h4 4、今だ！バトルセンス発動ボタンを押せ！
+          = image_tag "introduction/point_3_04.jpg", alt: "バトルセンス発動", height: "130", width: "280", class: "pointPctL"
+          .flortRM
+            %p バトルセンス発動ボタンを押すと、バトルセンスが発動します。
+          %hr
+          %ul.menuS
+            %li
+              %a{href: "point_1skill.html"} スキル編
+            %li
+              %a{href: "point_2alteration.html"} オルタレーション編
+            %li バトルセンス編
+            %li
+              %a{href: "point_4technique.html"} テクニック編
+            %li
+              %a{href: "point_5deckmake.html"} 戦術＆デッキメイク編
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+      .footer
+        © 2019 Shota Tazawa

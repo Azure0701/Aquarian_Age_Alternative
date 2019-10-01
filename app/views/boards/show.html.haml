@@ -2,7 +2,7 @@
   .body-wrap
     .base
       .header
-        = link_to image_tag("head_img2.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+        = link_to image_tag("banner/head_img2.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
       = render 'top/header_menu'
       .nav
         - if user_signed_in?
@@ -60,7 +60,7 @@
         .main__board-content
           = @board.content
         .main__board-comments
-          - @board.comments.each_with_index do |comment, index|
+          - @board.comments.includes(:user).each_with_index do |comment, index|
             .main__board-comment
               .main__board-comment-heading
                 = index + 1

@@ -1,0 +1,176 @@
+.wrapper
+  .body-wrap
+    .base
+      .header
+        = link_to image_tag("banner/head_img1.jpg", class: "header-image"),"http://aquarian-ac.net/", class: "header-image"
+      = render '/top/header_menu'
+      .nav
+        - if user_signed_in?
+          %h3.user-label
+            ユーザー名:
+          %h3.user-name
+            #edit-show
+              = current_user.username
+            #edit-modal.edit-modal-wrapper
+              .modal
+                .close-modal
+                  %i.fa.fa-2x.fa-times
+                #edit-form
+                  %h2 ユーザー編集
+                  = form_for(current_user) do |f|
+                    %input{name: "_method", type: "hidden", value: "put"}/
+                    %input{name: "authenticity_token", type: "hidden", value: "jwCrlLR7/b/rJMyQJVUFNtMhw5g6pcGwMbod3dCFeuKz2ZAwmK6IdGy8y1xzbMmw+cxObuF/KfeSqKgT63RKhw=="}/
+                    .field
+                      %label{for: "user_username"} Username
+                      %br/
+                      %input#user_username{autofocus: "autofocus", name: "user[username]", type: "text", value: current_user.username}/
+                    .field
+                      %label{for: "user_email"} Eメール
+                      %br/
+                      %input#user_email{autocomplete: "email", autofocus: "autofocus", name: "user[email]", type: "email", value: current_user.email}/
+                    .field
+                      %label{for: "user_password"} パスワード
+                      %i (6 characters minimum)
+                      %br/
+                      %input#user_password{autocomplete: "new-password", name: "user[password]", type: "password"}/
+                      %br/
+                    .field
+                      %label{for: "user_password_confirmation"} パスワード（確認用）
+                      %br/
+                      %input#user_password_confirmation{autocomplete: "new-password", name: "user[password_confirmation]", type: "password"}/
+                    .actions
+                      %input{"data-disable-with" => "Update", class:"action-input", name: "commit", type: "submit", value: "Update"}/
+        - else
+          %h3.user-label
+            ログインされていません
+        
+        %ul
+          %li
+            = link_to "ゲーム概要", summary_introductions_path
+          %li
+            = link_to "ストーリー", story_introductions_path
+          %li
+            = link_to "遊び方", play_introductions_path
+          %li
+            = link_to "プレイモード" ,mode_introductions_path
+          %li
+            = link_to "プレイ上のポイント" ,point_introductions_path
+          %li
+            = link_to "カードリスト" ,root_path
+          %li
+            = link_to "ギャラリー" ,root_path
+
+      .main
+        #mainR
+          #pointBody
+          %a#top{name: "top"}
+          %h2#mainRAaaDeckmake 戦術＆デッキメイク編
+          %ul.menuS
+            %li
+              = link_to "ゲーム概要", summary_introductions_path
+            %li
+              = link_to "プレイ上のポイント", point_introductions_path
+            %li
+              戦術＆デッキメイク編
+          %h3
+            %a#screen{name: "screen"}>
+            全てはデッキメイクから始まる！
+          %p
+            登録可能なカードの組み合わせ（デッキ）は、
+            %em> キャラクターカードは5枚まで、オルタレーションカードは2枚まで
+            です。
+            %br
+            序盤から速攻を仕掛けて逃げ切るか、序盤は耐えて後半巻き返しを狙うかは、あなたの戦略しだいです。
+            %br
+            また、あなたのお気に入りのカードや勢力でデッキを組むことも、アクエリアンエイジならではの楽しみ方の一つです。
+            %br
+            様々な組み合わせを試して
+            %em> 自分だけのデッキを作りましょう
+            。
+            %br
+            ここではお薦めデッキをいくつか紹介します。
+          = image_tag "introduction/point_5_card.gif", alt: "カード図の説明", height: "47", width: "460", class: "pict"
+          %hr
+          %h4 1、速攻！光弾狙撃デッキ（バトルセンス:シューティングセンス）
+          %p
+            光弾系のスキルを持つキャラクターのみで構成されたデッキです。
+            %em> 1勢力のみで組まれたデッキ
+            なので、
+            %em すぐにエナジーが溜まりやすく、ラウンド開始早々から相手を攻めることが可能です。
+            %br
+            %a{href: "list_3wiz.html#card0031"} 「マーリン」
+            %a{href: "list_3wiz.html#card0037"} 「ルツィエ」
+            %a{href: "list_3wiz.html#card0038"} 「イザベル」
+          = image_tag "introduction/point_5_01.jpg", alt: "光弾狙撃デッキ", height: "292", width: "460", usemap: "#Map", class: "pict"
+          %map#Map{name: "Map"}
+            %area{alt: "賢者マーリン", coords: "7,7,50,88", href: "list_3wiz.html#card0031", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "ホムンクルス・アゾート“works274”ver.3", coords: "71,6,114,114", href: "list_3wiz.html#card0033", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "マークドウィッチ“ルツィエ・フォン・フリッシュ”", coords: "147,6,189,101", href: "list_3wiz.html#card0037", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "パラディン“イザベル・フランドール”", coords: "219,6,261,100", href: "list_3wiz.html#card0038", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "ハイプリエステス“ポーラ・ウァレンティヌス”", coords: "285,6,326,106", href: "list_3wiz.html#card0041", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "ソドムの罰", coords: "352,7,394,77", href: "list_3wiz.html#card0043", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "ミストルティン", coords: "409,7,448,80", href: "list_3wiz.html#card0044", onfocus: "this.blur()", shape: "rect"}/
+          %hr
+          %h4 2、相手を封じろ！テレポート攻撃デッキ（バトルセンス：トラップセンス）
+          %p
+            %a{href: "list_2ara.html#card0022"}> 「高原日見呼」
+            のスキルで相手のダッシュスピードを下げ、
+            %a{href: "list_2ara.html#card0023"}> 「服部忍」
+            のスキルで相手の移動を制限しつつ、
+            %a{href: "list_6era.html#card0076"}> 「ウリエル」
+            のテレポートで
+            %em フィールドを縦横無尽に駆け回りましょう。
+            %br
+            相手のマインドブレーカーを
+            %a{href: "list_2ara.html#card0018"}> 「伊雑あざか」
+            のスキルで結界に閉じ込めれば
+            %em 勝利は目前です！
+          = image_tag "introduction/point_5_02.jpg", alt: "テレポート攻撃デッキ", height: "292", width: "460", border: "0", usemap: "#MapMap", class: "pict"
+          %map#MapMap{name: "MapMap"}
+            %area{alt: "調巫女“伊雑あざか”", coords: "7,5,51,90", href: "list_2ara.html#card0018", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "アマテラスの依代“高原日見呼”", coords: "73,6,115,91", href: "list_2ara.html#card0022", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "忍者“服部忍”", coords: "147,6,188,88", href: "list_2ara.html#card0023", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "アークエンジェル“ウリエル”", coords: "218,6,260,88", href: "list_6era.html#card0076", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "大天使“ジブリール”", coords: "285,6,325,89", href: "list_6era.html#card0080", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "七支刀", coords: "350,6,392,78", href: "list_2ara.html#card0028", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "タイムストップ", coords: "408,6,448,79", href: "list_6era.html#card0088", onfocus: "this.blur()", shape: "rect"}/
+          %hr
+          %h4 3、スキルを妨害！マルチ対応型デッキ（バトルセンス:アタックセンス）
+          %p
+            相手がスキルで攻めてくるなら、こちらは
+            %a{href: "list_1ego.html#card0001"}> 「和泉はるか」
+            のスキル無力化、
+            %a{href: "list_1ego.html#card0004"}> 「万城目千里」
+            のスキル封印、
+            %a{href: "list_5kyo.html#card0066"}> 「ロュス・アルタイル」
+            のスキル反射で対抗します。また、相手が直接攻撃で来るなら
+            %a{href: "list_4drk.html#card0052"}> 「シヴァ」
+            のパワーで逆に相手を圧倒しましょう。
+            %br/
+            %em プレイヤーの対応力が鍵となりますが、極めればどんなデッキにも引けを取りません！
+          = image_tag "introduction/point_5_03.jpg", alt: "マルチ対応型デッキ", height: "292", width: "460", border: "0", usemap: "#MapMapMap", class: "pict"
+          %map#MapMapMap{name: "MapMapMap"}
+            %area{alt: "ピュアメイド“和泉はるか”", coords: "7,5,51,90", href: "list_1ego.html#card0001", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "インフィニティ・アイ“万城目千里”", coords: "71,6,115,100", href: "list_1ego.html#card0004", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "バイラヴァ“シヴァ”", coords: "148,5,189,87", href: "list_4drk.html#card0052", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "ジャマー“ロュス・アルタイル”", coords: "219,6,258,100", href: "list_5kyo.html#card0066", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "晶天使“クリスタル”", coords: "285,6,325,89", href: "list_5kyo.html#card0070", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "調理実習", coords: "353,7,394,78", href: "list_1ego.html#card0013", onfocus: "this.blur()", shape: "rect"}/
+            %area{alt: "ブレードデモン", coords: "408,5,448,78", href: "list_4drk.html#card0058", onfocus: "this.blur()", shape: "rect"}/
+          %hr
+          %ul.menuS
+            %li
+              %a{href: "point_1skill.html"} スキル編
+            %li
+              %a{href: "point_2alteration.html"} オルタレーション編
+            %li
+              %a{href: "point_3battlesense.html"} バトルセンス編
+            %li
+              %a{href: "point_4technique.html"} テクニック編
+            %li 戦術＆デッキメイク編
+          .linker
+            %a{href: "#top"} ▲このページのトップへ
+          .linker
+            = link_to image_tag("introduction/main_iconback.gif", alt: "前ページへ戻る"),play_introductions_path
+      .footer
+        © 2019 Shota Tazawa
