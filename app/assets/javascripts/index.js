@@ -1,23 +1,3 @@
-$(function() {
-  $('#signin-show').click(function() {
-    $('#login-modal').fadeIn();
-  });
-  
-  $('#signup-show').click(function(){
-    $('#signup-modal').fadeIn();
-  });
-
-  $('#edit-show').click(function(){
-    $('#edit-modal').fadeIn();
-  });
-  
-  $('.close-modal').click(function(){
-    $('#login-modal').fadeOut();
-    $('#signup-modal').fadeOut();
-    $('#edit-modal').fadeOut();
-  });
-});
-
 $(function(){
   $("#new_user.new_user").validate({
     rules: {
@@ -59,4 +39,3 @@ $(function(){
     }
   });  
 });
- 
